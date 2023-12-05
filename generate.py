@@ -134,7 +134,7 @@ output = subprocess.run(
         "rg",
         "-o",
         "-I",
-        '\s*#\s*include\s+"(?P<fullpath>me/(?P<module>\w+)/generic/g_(?P<type>\w+)\.h)"',
+        '\s*#\s*include\s+"(?P<fullpath>me/(?P<module>\w+)/generic/g_(?P<type>[\w_]+)\.h)"',
         "--replace",
         "$module|$type",
         *all_files,
@@ -147,11 +147,11 @@ output = subprocess.run(
 def find_source_for_gen(gen_mod):
     mod, ty = (gen_mod["module"], gen_mod["type"])
     return {
-        "in_header": args.sources / "include" / f"me/{mod}/generic/g_{ty}.h",
-        "out_header": args.out / "include" / f"me/{mod}/generic/g_{ty}.h",
-        "in_source": args.sources / "src" / f"me/{mod}/generic/g_{ty}/",
+        "in_header": args.sources / "include" / f"me/{mod}/generic/template.h",
+        "out_header": args.out / "include" / f"me/{mod}/generic/g_{mod}_{ty}.h",
+        "in_source": args.sources / "src" / f"me/{mod}/generic/template/",
         "out_source": args.out / "src" / f"me/{mod}/generic/g_{ty}/",
-        "type_header": '"#include "me/types/{ty}.h"',
+        "type_header": f'#include "me/types/{ty}.h"',
         "module": mod,
         "ty": ty,
     }
@@ -159,6 +159,7 @@ def find_source_for_gen(gen_mod):
 
 def from_dual(dual):
     mod, ty = dual
+    ty = ty.removeprefix(mod + '_')
     return {"module": mod, "type": ty}
 
 
@@ -178,6 +179,19 @@ all_generated = list(
     )
 )
 
+
+def copy_and_overwrite(from_path, to_path):
+    if os.path.exists(to_path):
+        if to_path.is_dir():
+            shutil.rmtree(to_path)
+        else:
+            os.remove(to_path)
+    if from_path.is_dir():
+        shutil.copytree(from_path, to_path)
+    else:
+        shutil.copy(from_path, to_path)
+
+
 if len(all_generated) == 0:
     exit(0)
 
@@ -185,8 +199,87 @@ source_needed = list(map(find_source_for_gen, all_generated))
 
 for s in source_needed:
     if not (s["in_source"].exists() and s["in_header"].exists()):
-        print(f"{COL_RED}Please check the sources of the module '{s['module']}'{COL_WHITE}")
+        print(
+            f"{COL_RED}Please check the sources of the module '{s['module']}'{COL_WHITE}"
+        )
         exit(3)
-    os.makedirs(s["out_header"].parent, exist_ok=True);
-    os.makedirs(s["out_source"].parent, exist_ok=True);
-
+    os.makedirs(s["out_header"].parent, exist_ok=True)
+    os.makedirs(s["out_source"].parent, exist_ok=True)
+    copy_and_overwrite(s["in_source"], s["out_source"])
+    copy_and_overwrite(s["in_header"], s["out_header"])
+    output = [
+        subprocess.run(
+            [
+                "fastmod",
+                "-F",
+                "__TYPENAME__",
+                s["ty"],
+                "--accept-all",
+                s["out_source"],
+                "-e",
+                "c,h",
+            ],
+            text=True,
+            capture_output=True,
+        ),
+        subprocess.run(
+            [
+                "fastmod",
+                "-F",
+                "__TYPENAME__",
+                s["ty"],
+                "--accept-all",
+                s["out_header"],
+                "-e",
+                "c,h",
+            ],
+            text=True,
+            capture_output=True,
+        ),
+        subprocess.run(
+            [
+                "fastmod",
+                "-F",
+                "__TYPEHEADER__",
+                s["type_header"],
+                "--accept-all",
+                s["out_source"],
+                "-e",
+                "c,h",
+            ],
+            text=True,
+            capture_output=True,
+        ),
+        subprocess.run(
+            [
+                "fastmod",
+                "-F",
+                "__TYPEHEADER__",
+                s["type_header"],
+                "--accept-all",
+                s["out_header"],
+                "-e",
+                "c,h",
+            ],
+            text=True,
+            capture_output=True,
+        ),
+        subprocess.run(
+            [
+                "fastmod",
+                "-F",
+                "TEMPLATE_H",
+                f"G_{s['module'].upper()}_{s['ty'].upper()}_H",
+                "--accept-all",
+                s["out_header"],
+                "-e",
+                "c,h",
+            ],
+            text=True,
+            capture_output=True,
+        ),
+    ]
+    if any(map(lambda r: r.returncode != 0, output)) != 0:
+        print(f"An error has occured with module {s['module']}<{s['ty']}>!")
+    else:
+        print(f"Written module {s['module']} for type {s['ty']}")

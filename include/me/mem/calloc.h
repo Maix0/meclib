@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   template.h                                         :+:      :+:    :+:   */
+/*   calloc.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 18:46:53 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/12/04 19:04:34 by maiboyer         ###   ########.fr       */
+/*   Created: 2023/11/06 16:03:21 by maiboyer          #+#    #+#             */
+/*   Updated: 2023/11/06 17:02:48 by maiboyer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEMPLATE_H
-#define TEMPLATE_H
+#ifndef CALLOC_H
+# define CALLOC_H
+# include "me/types.h"
 
-__TYPEHEADER__
-
-#include "me/types.h"
-
-typedef struct {
-  t_usize len;
-  t_usize capacity;
-  __TYPENAME__ *buffer;
-} t_vec__TYPENAME__;
-
+void	*me_calloc(t_usize item_count, t_usize item_size);
 
 #endif
