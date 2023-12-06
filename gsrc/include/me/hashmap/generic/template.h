@@ -6,7 +6,7 @@
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 11:00:22 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/12/06 16:10:33 by maiboyer         ###   ########.fr       */
+/*   Updated: 2023/12/06 16:26:36 by maiboyer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,29 @@
 # include <stdlib.h>
 # include <string.h>
 
-# define __KEYTYPE__ char *
-# define __VALTYPE__ int
+# define C_KEYTYPE__ char *
+# define C_VALTYPE__ int
 
 typedef struct s_kv
 {
-	__KEYTYPE__		key;
-	__VALTYPE__		val;
+	C_KEYTYPE__		key;
+	C_VALTYPE__		val;
 }					t_kv;
 
-typedef size_t		(*t_hash_fn)(__KEYTYPE__ *key);
+typedef size_t		(*t_hash_fn)(C_KEYTYPE__ *key);
 typedef size_t		(*t_drop_fn)(t_kv val);
-typedef bool		(*t_eq_fn)(__KEYTYPE__ *lhs, __KEYTYPE__ *rhs);
+typedef bool		(*t_eq_fn)(C_KEYTYPE__ *lhs, C_KEYTYPE__ *rhs);
 
-typedef struct s_pair
+typedef struct s_entry
 {
 	size_t			hash_id;
 	t_kv			kv;
-	struct s_pair	*next;
-}					t_pair;
+	struct s_entry	*next;
+}					t_entry;
 
 typedef struct s_hashmap
 {
-	t_pair			**buckets;
+	t_entry			**buckets;
 	size_t			num_buckets;
 	t_hash_fn		hfunc;
 	t_eq_fn			cfunc;
@@ -56,12 +56,12 @@ t_hashmap			*new_hashmap(t_hash_fn hash, t_eq_fn cmp, t_drop_fn drop);
 t_hashmap			*new_hashmap_c(t_hash_fn hash, t_eq_fn cmp, t_drop_fn drop,
 						size_t cap);
 
-void				free_hashmap(t_hashmap *hmap);
+void				drop_hashmap(t_hashmap hmap);
 
-void				insert_hashmap(t_hashmap *hmap, __KEYTYPE__ key,
-						__VALTYPE__ value);
+void				insert_hashmap(t_hashmap *hmap, C_KEYTYPE__ key,
+						C_VALTYPE__ value);
 
-__VALTYPE__			*get_hashmap(t_hashmap *hmap, __KEYTYPE__ *key);
-void				remove_hashmap(t_hashmap *hmap, __KEYTYPE__ *key);
+C_VALTYPE__			*get_hashmap(t_hashmap *hmap, C_KEYTYPE__ *key);
+void				remove_hashmap(t_hashmap *hmap, C_KEYTYPE__ *key);
 
 #endif

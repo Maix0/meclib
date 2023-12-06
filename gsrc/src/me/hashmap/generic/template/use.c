@@ -17,8 +17,8 @@
 #include "me/types.h"
 #include <stdlib.h>
 
-static void	find_possible_entry(t_pair **entry, t_pair **prev, t_hashmap *hmap,
-		__KEYTYPE__ *key)
+static void	find_possible_entry(t_entry **entry, t_entry **prev, t_hashmap *hmap,
+		C_KEYTYPE__ *key)
 {
 	while (*entry != NULL)
 	{
@@ -31,11 +31,11 @@ static void	find_possible_entry(t_pair **entry, t_pair **prev, t_hashmap *hmap,
 	}
 }
 
-void	insert_hashmap(t_hashmap *hmap, __KEYTYPE__ key, __VALTYPE__ value)
+void	insert_hashmap(t_hashmap *hmap, C_KEYTYPE__ key, C_VALTYPE__ value)
 {
 	size_t	hashed_key;
-	t_pair	*prev;
-	t_pair	*entry;
+	t_entry	*prev;
+	t_entry	*entry;
 
 	hashed_key = hmap->hfunc(&key);
 	prev = NULL;
@@ -43,7 +43,7 @@ void	insert_hashmap(t_hashmap *hmap, __KEYTYPE__ key, __VALTYPE__ value)
 	find_possible_entry(&entry, &prev, hmap, &key);
 	if (entry == NULL)
 	{
-		entry = malloc(sizeof(t_pair));
+		entry = malloc(sizeof(t_entry));
 		entry->hash_id = hashed_key;
 		entry->kv.key = key;
 		entry->kv.val = value;
@@ -57,10 +57,10 @@ void	insert_hashmap(t_hashmap *hmap, __KEYTYPE__ key, __VALTYPE__ value)
 		entry->kv.val = value;
 }
 
-__VALTYPE__	*get_hashmap(t_hashmap *hmap, __KEYTYPE__ *key)
+C_VALTYPE__	*get_hashmap(t_hashmap *hmap, C_KEYTYPE__ *key)
 {
 	size_t	hashed_key;
-	t_pair	*entry;
+	t_entry	*entry;
 
 	hashed_key = hmap->hfunc(key);
 	entry = hmap->buckets[hashed_key];
@@ -73,11 +73,11 @@ __VALTYPE__	*get_hashmap(t_hashmap *hmap, __KEYTYPE__ *key)
 	return (NULL);
 }
 
-void	remove_hashmap(t_hashmap *hmap, __KEYTYPE__ *key)
+void	remove_hashmap(t_hashmap *hmap, C_KEYTYPE__ *key)
 {
 	size_t	hashed_key;
-	t_pair	*prev;
-	t_pair	*entry;
+	t_entry	*prev;
+	t_entry	*entry;
 
 	hashed_key = hmap->hfunc(key);
 	prev = NULL;
@@ -93,5 +93,5 @@ void	remove_hashmap(t_hashmap *hmap, __KEYTYPE__ *key)
 	hmap->buckets[hashed_key] = NULL;
 }
 
-#undef __KEYTYPE__
-#undef __VALTYPE__
+#undef C_KEYTYPE__
+#undef C_VALTYPE__
