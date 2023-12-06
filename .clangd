@@ -2,4 +2,5 @@ CompileFlags: # Tweak the parse settings
   Add: 
     - "-I/home/maiboyer/Documents/meclib/include/"
     - "-I/home/maiboyer/Documents/meclib/generic/include/"
+    - "-I/home/maiboyer/Documents/meclib/gsrc/include/"
 
