@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   template.h                                         :+:      :+:    :+:   */
+/*   vec_str.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:46:53 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/12/05 19:38:44 by maiboyer         ###   ########.fr       */
+/*   Updated: 2023/12/07 19:17:40 by maiboyer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEMPLATE_H
-#define TEMPLATE_H
+#ifndef VEC_STR_H
+#define VEC_STR_H
 
-__TYPEHEADER__
+#ifdef GENERIC_WRITING
+#define char * char
+#define #include "me/types/t_str.h"
+#endif
+
+#include "me/types/t_str.h"
 #include "me/types.h"
 
 typedef struct {
   t_usize len;
   t_usize capacity;
-  __TYPENAME__ *buffer;
-} t_vec___TYPENAME__;
+  char * *buffer;
+} t_vec_str;
 
-t_vec___TYPENAME__ me_vec___TYPENAME___new(t_usize capacity);
-bool me_vec___TYPENAME___push(t_vec___TYPENAME__ *vec, __TYPENAME__ element);
-bool me_vec___TYPENAME___pop(t_vec___TYPENAME__ *vec, __TYPENAME__ *value);
-void me_vec___TYPENAME___free(t_vec___TYPENAME__ vec,
-                              void (*free_elem)(__TYPENAME__));
+t_vec_str me_vec_str_new(t_usize capacity);
+bool me_vec_str_push(t_vec_str *vec, char * element);
+bool me_vec_str_pop(t_vec_str *vec, char * *value);
+void me_vec_str_free(t_vec_str vec,
+                             void (*free_elem)(char *));
 
 #endif

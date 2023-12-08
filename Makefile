@@ -6,7 +6,7 @@
 #    By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/03 13:20:01 by maiboyer          #+#    #+#              #
-#    Updated: 2023/12/04 12:45:14 by maiboyer         ###   ########.fr        #
+#    Updated: 2023/12/08 16:06:50 by maiboyer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@ define_module = $(addprefix $(1)/, $(2))
 
 BUILD_DIR		=	build
 SRC_DIR			=	src
-INCLUDE_DIR		=	include
-LIBS_DIR		=	.
+INCLUDE_DIR		=	include output/include
+LIBS_DIR		=	
 
 SRC_FILES		=	
 
@@ -59,9 +59,9 @@ get_lib:
 
 $(NAME): $(OBJ) libs_build
 	@printf \\n$(COL_GRAY)Building\ Output\ $(COL_WHITE)$(COL_BOLD)%-28s$(COL_RESET)\  \
-		$(BUILD_DIR)$(NAME)
+		$(BUILD_DIR)/$(NAME)
 	@#cc $(OBJ) libft/libft.a
-	@ar rcs $(LIB_NAME)$(NAME) $(OBJ)
+	@ar rcs $(LIB_NAME)/$(NAME) $(OBJ)
 	@printf $(COL_GREEN)done$(COL_RESET)\\n
 
 libs_build:
