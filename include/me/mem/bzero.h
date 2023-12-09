@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bzero.h                                            :+:      :+:    :+:   */
+/*   mem_set_zero.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -15,6 +15,6 @@
 
 # include "me/types.h"
 
-void	me_bzero(void *buf, t_usize count);
+void	me_mem_set_zero(void *buf, t_usize count);
 
 #endif

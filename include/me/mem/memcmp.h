@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memcmp.h                                           :+:      :+:    :+:   */
+/*   mem_compare.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -15,6 +15,6 @@
 
 # include "me/types.h"
 
-t_i32	me_memcmp(const void *lhs, const void *rhs, t_usize count);
+t_i32	me_mem_compare(const void *lhs, const void *rhs, t_usize count);
 
 #endif

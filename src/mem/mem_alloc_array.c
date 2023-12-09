@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/mem/bzero.h"
-#include "ft/mem/calloc.h"
+#include "ft/mem/mem_set_zero.h"
+#include "ft/mem/mem_alloc_array.h"
 #include <stdlib.h>
 
 void	*mem_alloc_array(t_usize item_count, t_usize item_size)

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memchr.h                                           :+:      :+:    :+:   */
+/*   mem_find.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -15,6 +15,6 @@
 
 # include "me/types.h"
 
-void	*me_memchr(void *buf, t_i32 find, t_usize count);
+void	*me_mem_find(void *buf, t_i32 find, t_usize count);
 
 #endif

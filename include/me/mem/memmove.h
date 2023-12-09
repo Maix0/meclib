@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memmove.h                                          :+:      :+:    :+:   */
+/*   mem_move.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -15,6 +15,6 @@
 
 # include "me/types.h"
 
-void	*me_memmove(void *destination, const void *source, t_usize count);
+void	*me_mem_move(void *destination, const void *source, t_usize count);
 
 #endif

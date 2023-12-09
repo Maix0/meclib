@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calloc.h                                           :+:      :+:    :+:   */
+/*   mem_alloc_array.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,6 +14,6 @@
 # define CALLOC_H
 # include "me/types.h"
 
-void	*me_calloc(t_usize item_count, t_usize item_size);
+void	*me_mem_alloc_array(t_usize item_count, t_usize item_size);
 
 #endif

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memcpy.h                                           :+:      :+:    :+:   */
+/*   mem_copy.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -15,6 +15,6 @@
 
 # include "me/types.h"
 
-void	*me_memcpy(void *destination, const void *source, t_usize count);
+void	*me_mem_copy(void *destination, const void *source, t_usize count);
 
 #endif

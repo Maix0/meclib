@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/mem/calloc.h"
+#include "ft/mem/mem_alloc_array.h"
 #include "ft/string/str_l_copy.h"
 #include "ft/string/strlen.h"
 #include "ft/string/str_substring.h"

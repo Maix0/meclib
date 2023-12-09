@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft/fs/write.h"
-#include "ft/mem/memset.h"
+#include "ft/mem/mem_set.h"
 #include "ft/num/putnbr_fd.h"
 
 static void	me_inner(t_u64 nb, t_str out, t_usize *idx)

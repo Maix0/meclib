@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include "me/vec/vec_C__PREFIX__.h"
-#include "me/mem/calloc.h"
-#include "me/mem/memcpy.h"
+#include "me/mem/mem_alloc_array.h"
+#include "me/mem/mem_copy.h"
 #include "me/types.h"
 #include <stdlib.h>
 
@@ -25,7 +25,7 @@ t_vec_C__PREFIX__ me_vec_C__PREFIX___new(t_usize capacity)
 	t_vec_C__PREFIX__ out;
 
 	out = (t_vec_C__PREFIX__){0};
-	out.buffer = me_calloc(capacity, sizeof(C__TYPENAME__));
+	out.buffer = me_mem_alloc_array(capacity, sizeof(C__TYPENAME__));
 	if (out.buffer)
 		out.capacity = capacity;
 	return (out);
@@ -44,11 +44,11 @@ bool me_vec_C__PREFIX___push(t_vec_C__PREFIX__ *vec, C__TYPENAME__ element)
 		new_capacity = (vec->capacity * 3) / 2 + 1;
 		while (vec->len + 1 > new_capacity)
 			new_capacity = (new_capacity * 3) / 2 + 1;
-		temp_buffer = me_calloc(new_capacity, sizeof(C__TYPENAME__));
+		temp_buffer = me_mem_alloc_array(new_capacity, sizeof(C__TYPENAME__));
 		if (temp_buffer == NULL)
 			return (true);
 		temp_buffer[0] = 0;
-		me_memcpy(temp_buffer, vec->buffer, vec->len * sizeof(C__TYPENAME__));
+		me_mem_copy(temp_buffer, vec->buffer, vec->len * sizeof(C__TYPENAME__));
 		free(vec->buffer);
 		vec->buffer = temp_buffer;
 		vec->capacity = new_capacity;

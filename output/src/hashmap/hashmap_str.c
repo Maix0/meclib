@@ -11,9 +11,9 @@
 /* ************************************************************************** */
 
 #include "me/hashmap/hashmap_str.h"
-#include "me/mem/calloc.h"
+#include "me/mem/mem_alloc_array.h"
 #include "me/mem/malloc.h"
-#include "me/mem/memcpy.h"
+#include "me/mem/mem_copy.h"
 #include "me/types.h"
 #include <stdlib.h>
 
@@ -34,7 +34,7 @@ t_hashmap_str *new_hashmap_with_buckets_str(
 	hmap = malloc(sizeof(*hmap));
 	if (hmap == NULL)
 		return (NULL);
-	hmap->buckets = me_calloc(buckets, sizeof(t_entry_str *));
+	hmap->buckets = me_mem_alloc_array(buckets, sizeof(t_entry_str *));
 	hmap->num_buckets = buckets;
 	hmap->hfunc = hfunc;
 	hmap->cfunc = cfunc;

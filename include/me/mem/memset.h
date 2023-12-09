@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memset.h                                           :+:      :+:    :+:   */
+/*   mem_set.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -15,6 +15,6 @@
 
 # include "me/types.h"
 
-void	*me_memset(void *buf, t_i32 fill_by, t_usize count);
+void	*me_mem_set(void *buf, t_i32 fill_by, t_usize count);
 
 #endif

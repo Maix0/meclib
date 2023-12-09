@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/mem/memset.h"
+#include "ft/mem/mem_set.h"
 #include "ft/num/itoa.h"
 #include "ft/string/str_clone.h"
 #include <stdlib.h>
@@ -44,7 +44,7 @@ t_str	me_itoa(t_i32 nb)
 	t_u64	n;
 
 	n = (t_u64)nb;
-	me_memset(out, 0, 12);
+	me_mem_set(out, 0, 12);
 	if (nb < 0)
 	{
 		out[0] = '-';

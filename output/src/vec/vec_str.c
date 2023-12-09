@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include "me/vec/vec_str.h"
-#include "me/mem/calloc.h"
-#include "me/mem/memcpy.h"
+#include "me/mem/mem_alloc_array.h"
+#include "me/mem/mem_copy.h"
 #include "me/types.h"
 #include <stdlib.h>
 
@@ -25,7 +25,7 @@ t_vec_str me_vec_str_new(t_usize capacity)
 	t_vec_str out;
 
 	out = (t_vec_str){0};
-	out.buffer = me_calloc(capacity, sizeof(char *));
+	out.buffer = me_mem_alloc_array(capacity, sizeof(char *));
 	if (out.buffer)
 		out.capacity = capacity;
 	return (out);
@@ -44,11 +44,11 @@ bool me_vec_str_push(t_vec_str *vec, char * element)
 		new_capacity = (vec->capacity * 3) / 2 + 1;
 		while (vec->len + 1 > new_capacity)
 			new_capacity = (new_capacity * 3) / 2 + 1;
-		temp_buffer = me_calloc(new_capacity, sizeof(char *));
+		temp_buffer = me_mem_alloc_array(new_capacity, sizeof(char *));
 		if (temp_buffer == NULL)
 			return (true);
 		temp_buffer[0] = 0;
-		me_memcpy(temp_buffer, vec->buffer, vec->len * sizeof(char *));
+		me_mem_copy(temp_buffer, vec->buffer, vec->len * sizeof(char *));
 		free(vec->buffer);
 		vec->buffer = temp_buffer;
 		vec->capacity = new_capacity;
