@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft/mem/calloc.h"
-#include "ft/string/strlcpy.h"
+#include "ft/string/str_l_copy.h"
 #include "ft/string/strlen.h"
 #include "ft/string/substr.h"
 #include <stdlib.h>

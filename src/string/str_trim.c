@@ -11,9 +11,9 @@
 /* ************************************************************************** */
 
 #include "ft/string/strchr.h"
-#include "ft/string/strlcpy.h"
+#include "ft/string/str_l_copy.h"
 #include "ft/string/strlen.h"
-#include "ft/string/strtrim.h"
+#include "ft/string/str_trim.h"
 #include <stdlib.h>
 
 t_str	str_trim(t_const_str str, t_const_str charset)

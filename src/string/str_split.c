@@ -12,7 +12,7 @@
 
 #include "ft/mem/calloc.h"
 #include "ft/string/split.h"
-#include "ft/string/strlcpy.h"
+#include "ft/string/str_l_copy.h"
 #include <stdlib.h>
 
 static t_usize	local_count_words(t_str_const str, char chr);
