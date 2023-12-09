@@ -6,20 +6,21 @@
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 15:56:59 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/12/09 14:56:26 by maiboyer         ###   ########.fr       */
+/*   Updated: 2023/12/09 16:52:08 by maiboyer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/mem/mem_alloc_array.h"
-#include "ft/string/split.h"
-#include "ft/string/str_l_copy.h"
+#include "me/mem/mem_alloc.h"
+#include "me/mem/mem_alloc_array.h"
+#include "me/string/str_l_copy.h"
+#include "me/string/str_split.h"
 #include <stdlib.h>
 
-static t_usize	local_count_words(t_str_const str, char chr);
-static t_str	*local_split_inner(t_str_const str, char chr, t_str *out);
+static t_usize	local_count_words(t_const_str str, char chr);
+static t_str	*local_split_inner(t_const_str str, char chr, t_str *out);
 static t_str	*local_split_freeall(t_str **to_free);
 
-static t_usize	local_count_words(t_str_const str, char chr)
+static t_usize	local_count_words(t_const_str str, char chr)
 {
 	t_usize	i;
 	t_usize	out;
@@ -46,7 +47,7 @@ static t_str	*local_split_freeall(t_str **to_free)
 	return (NULL);
 }
 
-static t_str	*local_split_inner(t_str_const str, char chr, t_str *out)
+static t_str	*local_split_inner(t_const_str str, char chr, t_str *out)
 {
 	t_usize	str_i;
 	t_usize	sub_i;
@@ -73,7 +74,7 @@ static t_str	*local_split_inner(t_str_const str, char chr, t_str *out)
 	return (out);
 }
 
-t_str	*str_split(t_str_const str, char chr)
+t_str	*str_split(t_const_str str, char chr)
 {
 	t_usize	ptr_len;
 	t_str	*out;

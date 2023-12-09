@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/ll/lstlast.h"
+#include "me/list/list_get_last.h"
 
 t_list	*list_get_last(t_list *list)
 {

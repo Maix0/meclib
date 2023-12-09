@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/char/isspace.h"
+#include "me/char/isspace.h"
 
-t_i32	me_isspace(t_i32 chr)
+bool	me_isspace(char chr)
 {
 	return (chr == ' ' || chr == '\f' || chr == '\n' || chr == '\r'
 		|| chr == '\t' || chr == '\v');

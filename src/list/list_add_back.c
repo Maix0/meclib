@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/ll/lstadd_back.h"
-#include "ft/ll/lstlast.h"
+#include "me/list/list_add_back.h"
+#include "me/list/list_get_last.h"
 
 void	list_add_back(t_list **list, t_list *new)
 {

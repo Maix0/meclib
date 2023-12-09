@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/fs/open.h"
+#include "me/fs/open.h"
 #include <fcntl.h>
 
-t_bool	me_open(t_str path, t_bool read, t_bool write, t_file *file_out)
+bool	me_open(t_str path, bool read, bool write, t_file *file_out)
 {
 	t_file	out;
 	int		flags;
@@ -27,7 +27,7 @@ t_bool	me_open(t_str path, t_bool read, t_bool write, t_file *file_out)
 		flags = O_WRONLY;
 	out = open(path, flags);
 	if (out < 0)
-		return (TRUE);
+		return (true);
 	*file_out = out;
-	return (FALSE);
+	return (false);
 }

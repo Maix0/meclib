@@ -6,13 +6,13 @@
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 11:11:01 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/12/09 14:49:18 by maiboyer         ###   ########.fr       */
+/*   Updated: 2023/12/09 16:53:53 by maiboyer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/string/str_n_find_str.h"
+#include "me/string/str_n_find_str.h"
 
-char	*str_find_str(t_const_str str, t_const_str to_find)
+const char	*str_find_str(t_const_str str, t_const_str to_find)
 {
 	t_str	needle;
 	t_str	haystack;
@@ -46,10 +46,11 @@ int	main(int argc, char *argv[]) {
 	printf("HAYSTACK = '%s'\n", argv[1]);
 	printf(" NEEDLE  = '%s'\n", argv[2]);
 
-	printf("libc: %p : '%s'\n", str_find_str(argv[1], argv[2]), str_find_str(argv[1],
+	printf("libc: %p : '%s'\n", str_find_str(argv[1], argv[2]),
+		str_find_str(argv[1],
 			argv[2]));
 	printf(" ft : %p : '%s'\n",
-		me_str_find_str(argv[1], argv[2]),
-		me_str_find_str(argv[1], argv[2]));
+		str_find_str(argv[1], argv[2]),
+		str_find_str(argv[1], argv[2]));
 }
 R*/

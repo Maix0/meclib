@@ -6,13 +6,13 @@
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:16:02 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/12/09 15:02:21 by maiboyer         ###   ########.fr       */
+/*   Updated: 2023/12/09 18:15:22 by maiboyer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/mem/mem_set.h"
+#include "me/mem/mem_set.h"
 
-void	*mem_set(void *buf, t_u8 fill_by, t_usize count)
+void	mem_set(void *buf, t_u8 fill_by, t_usize count)
 {
 	t_usize	i;
 	t_u8	*buf_bytes;
@@ -24,5 +24,4 @@ void	*mem_set(void *buf, t_u8 fill_by, t_usize count)
 		buf_bytes[i] = fill_by;
 		i++;
 	}
-	return (buf);
 }

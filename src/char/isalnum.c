@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/char/isalnum.h"
-#include "ft/char/isalpha.h"
-#include "ft/char/isdigit.h"
+#include "me/char/isalnum.h"
+#include "me/char/isalpha.h"
+#include "me/char/isdigit.h"
 
-t_i32	me_isalnum(t_i32 chr)
+bool	me_isalnum(char chr)
 {
 	return (me_isalpha(chr) || me_isdigit(chr));
 }

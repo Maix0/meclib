@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/fs/putstr_fd.h"
-#include "ft/fs/write.h"
-#include "ft/string/strlen.h"
+#include "me/fs/putstr_fd.h"
+#include "me/fs/write.h"
+#include "me/string/str_len.h"
 
 void	me_putstr_fd(t_str str, t_file file)
 {
 	if (str == NULL)
 		return ;
-	me_write(file, (t_u8 *)str, me_strlen(str));
+	me_write(file, (t_u8 *)str, str_len(str));
 }

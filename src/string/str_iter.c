@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/string/str_iter.h"
+#include "me/string/str_iter.h"
 
 void	str_iter(t_str s, void (*f)(t_usize, char *))
 {

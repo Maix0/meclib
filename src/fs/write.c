@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/fs/write.h"
+#include "me/fs/write.h"
 #include <unistd.h>
 
-t_bool	me_write(t_file fd, t_u8 *buffer, t_i64 size)
+bool	me_write(t_file fd, t_u8 *buffer, t_i64 size)
 {
 	return (write(fd, buffer, size) < 0);
 }

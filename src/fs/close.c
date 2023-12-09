@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/fs/close.h"
-#include "ft/std.h"
+#include "me/fs/close.h"
+#include "me/types.h"
 #include <unistd.h>
 
-t_bool	me_close(t_file file, t_i32 *error)
+bool	me_close(t_file file, t_i32 *error)
 {
 	t_i32	res;
-	t_bool	out;
+	bool	out;
 
 	res = close(file);
 	out = res != 0;

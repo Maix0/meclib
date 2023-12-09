@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/fs/putchar_fd.h"
-#include "ft/fs/write.h"
-#include "ft/string/strlen.h"
+#include "me/fs/putchar_fd.h"
+#include "me/fs/write.h"
+#include "me/string/str_len.h"
 
 void	me_putchar_fd(char chr, t_file file)
 {

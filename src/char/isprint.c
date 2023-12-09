@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/char/isprint.h"
+#include "me/char/isprint.h"
 
-t_i32	me_isprint(t_i32 chr)
+bool	me_isprint(char chr)
 {
 	return (chr >= ' ' && chr <= '~');
 }

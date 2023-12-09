@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/ll/lstdelone.h"
+#include "me/list/list_free_one.h"
 #include <stdlib.h>
 
 void	list_free_one(t_list *lst, void (*del)(void *))

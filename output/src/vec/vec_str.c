@@ -6,36 +6,32 @@
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 18:46:28 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/12/08 16:58:00 by maiboyer         ###   ########.fr       */
+/*   Updated: 2023/12/09 17:54:11 by maiboyer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "me/vec/vec_str.h"
 #include "me/mem/mem_alloc_array.h"
 #include "me/mem/mem_copy.h"
 #include "me/types.h"
+#include "me/vec/vec_str.h"
 #include <stdlib.h>
 
-#ifdef GENERIC_WRITING
-# define char * char
-#endif
-
-t_vec_str me_vec_str_new(t_usize capacity)
+t_vec_str	vec_str_new(t_usize capacity)
 {
-	t_vec_str out;
+	t_vec_str	out;
 
 	out = (t_vec_str){0};
-	out.buffer = me_mem_alloc_array(capacity, sizeof(char *));
+	out.buffer = mem_alloc_array(capacity, sizeof(t_str));
 	if (out.buffer)
 		out.capacity = capacity;
 	return (out);
 }
 
 /// Return true in case of an error
-bool me_vec_str_push(t_vec_str *vec, char * element)
+bool	vec_str_push(t_vec_str *vec, t_str element)
 {
-	char * *temp_buffer;
-	size_t		   new_capacity;
+	t_str	*temp_buffer;
+	size_t	new_capacity;
 
 	if (vec == NULL)
 		return (true);
@@ -44,11 +40,11 @@ bool me_vec_str_push(t_vec_str *vec, char * element)
 		new_capacity = (vec->capacity * 3) / 2 + 1;
 		while (vec->len + 1 > new_capacity)
 			new_capacity = (new_capacity * 3) / 2 + 1;
-		temp_buffer = me_mem_alloc_array(new_capacity, sizeof(char *));
+		temp_buffer = mem_alloc_array(new_capacity, sizeof(t_str));
 		if (temp_buffer == NULL)
 			return (true);
 		temp_buffer[0] = 0;
-		me_mem_copy(temp_buffer, vec->buffer, vec->len * sizeof(char *));
+		mem_copy(temp_buffer, vec->buffer, vec->len * sizeof(t_str));
 		free(vec->buffer);
 		vec->buffer = temp_buffer;
 		vec->capacity = new_capacity;
@@ -59,18 +55,17 @@ bool me_vec_str_push(t_vec_str *vec, char * element)
 }
 
 /// Return true if the vector is empty
-bool me_vec_str_pop(t_vec_str *vec, char * *value)
+bool	vec_str_pop(t_vec_str *vec, t_str *value)
 {
 	if (vec->len == 0 || value == NULL)
 		return (vec->len == 0 || value != NULL);
 	vec->len--;
 	*value = vec->buffer[vec->len];
-	return false;
+	return (false);
 }
-void me_vec_str_free(t_vec_str vec,
-							 void (*free_elem)(char *))
-{
 
+void	vec_str_free(t_vec_str vec, void (*free_elem)(t_str))
+{
 	if (free_elem)
 	{
 		while (vec.len)

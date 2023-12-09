@@ -1,6 +1,6 @@
 CompileFlags: # Tweak the parse settings
   Add: 
-    - "-I/home/maiboyer/Documents/meclib/include/"
-    - "-I/home/maiboyer/Documents/meclib/output/include/"
-    - "-I /home/maiboyer/Documents/meclib/generic_sources/header/"
+    - "-I/home/maiboyer/Documents/mecstd/include/"
+    - "-I/home/maiboyer/Documents/mecstd/output/include/"
+    - "-I /home/maiboyer/Documents/mecstd/generic_sources/header/"
 

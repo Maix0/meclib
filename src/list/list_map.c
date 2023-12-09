@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/ll/lstclear.h"
-#include "ft/ll/lstmap.h"
-#include "ft/ll/lstnew.h"
+#include "me/list/list_alloc_node.h"
+#include "me/list/list_free_all.h"
+#include "me/list/list_map.h"
 #include <stdlib.h>
 
 t_list	*list_map(t_list *lst, void *(*f)(void *), void (*del)(void *))

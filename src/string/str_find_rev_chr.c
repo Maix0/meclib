@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/string/strlen.h"
-#include "ft/string/str_find_rev_chr.h"
+#include "me/string/str_find_rev_chr.h"
+#include "me/string/str_len.h"
 
 char	*str_find_rev_chr(t_const_str str, char chr)
 {
 	t_usize	index;
 
-	index = me_strlen((t_str)str);
+	index = str_len((t_str)str);
 	while (index >= 0)
 	{
 		if (str[index] == chr)

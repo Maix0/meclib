@@ -20,8 +20,8 @@
 
 R*/
 
-#include "ft/string/str_l_copy.h"
-#include "ft/string/strlen.h"
+#include "me/string/str_l_copy.h"
+#include "me/string/str_len.h"
 
 t_usize	str_l_copy(t_str dest, t_const_str src, t_usize buffer_size)
 {
@@ -72,7 +72,7 @@ int	main(void) {
 			dest_ft[SIZE - j - 1] = 0;
 			dest_libc[SIZE - j - 1] = 0;
 			res_libc = str_l_cat(dest_libc, to_cat, SIZE - v);
-			res_ft  = me_str_l_cat(dest_ft, to_cat, SIZE - v);
+			res_ft  = str_l_cat(dest_ft, to_cat, SIZE - v);
 			int k;
 			k = 0;
 			while (k < SIZE && dest_libc[k] == dest_ft[k])

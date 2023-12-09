@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/char/islower.h"
-#include "ft/char/toupper.h"
+#include "me/char/islower.h"
+#include "me/char/toupper.h"
 
-t_i32	me_toupper(t_i32 chr)
+bool	me_toupper(char chr)
 {
 	if (me_islower(chr))
 		return (chr - ('a' - 'A'));

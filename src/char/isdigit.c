@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/char/isdigit.h"
+#include "me/char/isdigit.h"
 
-t_i32	me_isdigit(t_i32 chr)
+bool	me_isdigit(char chr)
 {
 	return (chr >= '0' && chr <= '9');
 }

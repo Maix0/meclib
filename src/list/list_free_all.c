@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/ll/lstclear.h"
+#include "me/list/list_free_all.h"
 #include <stdlib.h>
 
 void	list_free_all(t_list **lst, void (*del)(void *))

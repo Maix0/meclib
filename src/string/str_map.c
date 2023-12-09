@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/string/str_clone.h"
-#include "ft/string/str_map.h"
+#include "me/string/str_clone.h"
+#include "me/string/str_map.h"
 
-t_str	str_map(t_str_const s, char (*f)(t_usize, char))
+t_str	str_map(t_const_str s, char (*f)(t_usize, char))
 {
 	t_str	out;
 	t_usize	idx;

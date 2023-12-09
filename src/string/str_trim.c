@@ -6,14 +6,15 @@
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:43:42 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/12/09 14:58:56 by maiboyer         ###   ########.fr       */
+/*   Updated: 2023/12/09 18:16:31 by maiboyer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/string/str_find_chr.h"
-#include "ft/string/str_l_copy.h"
-#include "ft/string/strlen.h"
-#include "ft/string/str_trim.h"
+#include "me/mem/mem_alloc.h"
+#include "me/string/str_find_chr.h"
+#include "me/string/str_l_copy.h"
+#include "me/string/str_len.h"
+#include "me/string/str_trim.h"
 #include <stdlib.h>
 
 t_str	str_trim(t_const_str str, t_const_str charset)
@@ -26,7 +27,8 @@ t_str	str_trim(t_const_str str, t_const_str charset)
 	if (str == NULL || charset == NULL)
 		return (0);
 	start_idx = 0;
-	while (str[start_idx] && str_find_chr((t_str)charset, str[start_idx]) != NULL)
+	while (str[start_idx] && str_find_chr((t_str)charset,
+			str[start_idx]) != NULL)
 		start_idx++;
 	end_idx = str_len((t_str)str);
 	while (end_idx > 0 && str_find_chr((t_str)charset, str[end_idx]) != NULL)

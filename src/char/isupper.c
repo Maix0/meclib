@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/char/isupper.h"
+#include "me/char/isupper.h"
 
-t_i32	me_isupper(t_i32 chr)
+bool	me_isupper(char chr)
 {
 	return ('Z' >= chr && chr >= 'A');
 }

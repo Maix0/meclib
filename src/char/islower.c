@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/char/islower.h"
+#include "me/char/islower.h"
 
-t_i32	me_islower(t_i32 chr)
+bool	me_islower(char chr)
 {
 	return (chr >= 'a' && chr <= 'z');
 }

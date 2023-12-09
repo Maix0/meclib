@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/mem/mem_compare.h"
+#include "me/mem/mem_compare.h"
 
 t_i32	mem_compare(const void *lhs, const void *rhs, t_usize count)
 {

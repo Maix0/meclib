@@ -6,23 +6,24 @@
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:31:12 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/12/05 18:43:34 by maiboyer         ###   ########.fr       */
+/*   Updated: 2023/12/09 16:04:14 by maiboyer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPES_H
 # define TYPES_H
 
+# include <stdbool.h>
 # include <stddef.h>
 # include <unistd.h>
-# include <stdbool.h>
+
+typedef char				*t_str;
+typedef const char			*t_const_str;
 
 typedef unsigned char		t_u8;
 typedef char				t_i8;
-typedef char				*t_str;
-typedef const char			*t_const_str;
-typedef char const			*t_str_const;
-
+typedef unsigned short		t_u16;
+typedef short				t_i16;
 typedef int					t_i32;
 typedef unsigned int		t_u32;
 typedef long long			t_u64;

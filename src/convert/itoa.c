@@ -10,19 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/mem/mem_set.h"
-#include "ft/num/itoa.h"
-#include "ft/string/str_clone.h"
+#include "me/convert/itoa.h"
+#include "me/mem/mem_set.h"
+#include "me/string/str_clone.h"
 #include <stdlib.h>
 
 static void	me_itoa_inner(t_u64 nb, t_str out)
 {
 	t_i32	modulus;
-	t_bool	need_print;
+	bool	need_print;
 	char	c;
 	t_usize	idx;
 
-	need_print = FALSE;
+	need_print = false;
 	modulus = 1000000000;
 	idx = 0;
 	while (modulus)
@@ -31,7 +31,7 @@ static void	me_itoa_inner(t_u64 nb, t_str out)
 		if (c != '0' || need_print)
 		{
 			out[idx++] = c;
-			need_print = TRUE;
+			need_print = true;
 		}
 		nb = nb % modulus;
 		modulus /= 10;
@@ -44,7 +44,7 @@ t_str	me_itoa(t_i32 nb)
 	t_u64	n;
 
 	n = (t_u64)nb;
-	me_mem_set(out, 0, 12);
+	mem_set(out, 0, 12);
 	if (nb < 0)
 	{
 		out[0] = '-';
@@ -54,7 +54,7 @@ t_str	me_itoa(t_i32 nb)
 		out[0] = '0';
 	else
 		me_itoa_inner(n, out);
-	return (me_str_clone(out));
+	return (str_clone(out));
 }
 /*R
 int	main(void)

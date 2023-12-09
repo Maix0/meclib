@@ -6,7 +6,7 @@
 #    By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/03 13:20:01 by maiboyer          #+#    #+#              #
-#    Updated: 2023/12/08 16:06:50 by maiboyer         ###   ########.fr        #
+#    Updated: 2023/12/09 18:31:17 by maiboyer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,25 +16,29 @@ BUILD_DIR		=	build
 SRC_DIR			=	src
 INCLUDE_DIR		=	include output/include
 LIBS_DIR		=	
+GENERIC_DIR		=	output/src
+GENERIC_INCLUDE	=	output/include
 
-SRC_FILES		=	
-
-NAME			=	libmestd.a
-LIB_NAME		=	
+NAME			=	libme.a
+LIB_NAME		?=	
 TARGET			=	$(NAME)
 CC				=	clang
-CFLAGS			=	-Wall -Wextra -Werror -g2 -L$(BUILD_DIR)
+CFLAGS			=	-Wall -Wextra -Werror -g2
 BONUS_FILES		=	
 LIBS_NAME		=	
 SUBJECT_URL		= 
 
-BONUS			=	$(addsuffix .c,$(addprefix $(SRC_DIR)/,$(BONUS_FILES)));
-SRC				=	$(addsuffix .c,$(addprefix $(SRC_DIR)/,$(SRC_FILES)))
-BONUS_OBJ		=	$(addsuffix .o,$(addprefix $(BUILD_DIR)/,$(BONUS_FILES)))
-OBJ				=	$(addsuffix .o,$(addprefix $(BUILD_DIR)/,$(SRC_FILES)))
-LIBS			=	$(addprefix $(LIBS_DIR)/,$(LIBS_NAME))
-INCLUDES		=	$(addprefix -I,$(INCLUDE_DIR) $(addsuffix /include,$(LIBS)))
+GENERIC_FILES	=	$(shell cat generic_files.list)
+SRC_FILES		=	$(shell cat source_files.list)
 
+BONUS			=	$(addsuffix .c,$(addprefix $(SRC_DIR)/,$(BONUS_FILES)))
+SRC				=	$(addsuffix .c,$(addprefix $(SRC_DIR)/,$(SRC_FILES))) \
+					$(addsuffix .c,$(addprefix $(GENERIC_DIR)/,$(GENERIC_FILES)))
+BONUS_OBJ		=	$(addsuffix .o,$(addprefix $(BUILD_DIR)/,$(BONUS_FILES)))
+OBJ				=	$(addsuffix .o,$(addprefix $(BUILD_DIR)/,$(SRC_FILES))) \
+					$(addsuffix .o,$(addprefix $(BUILD_DIR)/,$(GENERIC_FILES)))
+LIBS			=	$(addprefix $(LIBS_DIR)/,$(LIBS_NAME))
+INCLUDES		=	$(addprefix -I,$(INCLUDE_DIR) $(GENERIC_INCLUDE) $(addsuffix /include,$(LIBS)))
 COL_GRAY		=	\\e[90m
 COL_WHITE		=	\\e[37m
 COL_GREEN		=	\\e[32m
@@ -53,15 +57,16 @@ COL_RESET		=	\\e[0m
 .PHONY: so
 
 all: $(NAME)
+drwxr-xr-x     - nobody    8 Dec 06:34  
 
 get_lib:
-	@printf $(LIB_NAME)$(NAME)
+	@printf $(LIB_NAME)/$(NAME)
 
 $(NAME): $(OBJ) libs_build
 	@printf \\n$(COL_GRAY)Building\ Output\ $(COL_WHITE)$(COL_BOLD)%-28s$(COL_RESET)\  \
 		$(BUILD_DIR)/$(NAME)
 	@#cc $(OBJ) libft/libft.a
-	@ar rcs $(LIB_NAME)/$(NAME) $(OBJ)
+	@ar rcs $(BUILD_DIR)/$(NAME) $(OBJ)
 	@printf $(COL_GREEN)done$(COL_RESET)\\n
 
 libs_build:
@@ -75,7 +80,13 @@ libs_build:
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
-	@printf $(COL_GRAY)Building\ $(COL_BOLD)$(COL_WHITE)%-35s\  $(LIB_NAME)$<
+	@printf $(COL_GRAY)Building\ $(COL_BOLD)$(COL_WHITE)%-50s\  $(LIB_NAME)$<
+	@$(CC) $(CFLAGS) $(WERROR) $(INCLUDES) -c $< -o $@
+	@printf $(COL_RESET)$(COL_GREEN)done$(COL_RESET)\\n
+
+$(BUILD_DIR)/%.o: $(GENERIC_DIR)/%.c
+	@mkdir -p $(dir $@)
+	@printf $(COL_GRAY)Building\ $(COL_BOLD)$(COL_WHITE)%-50s\  $(LIB_NAME)$<
 	@$(CC) $(CFLAGS) $(WERROR) $(INCLUDES) -c $< -o $@
 	@printf $(COL_RESET)$(COL_GREEN)done$(COL_RESET)\\n
 
@@ -103,8 +114,7 @@ fclean: clean
 re: fclean all
 
 format:
-	@c_formatter_42 $(SRC) $(BONUS) $(patsubst %.c,%.h,$(addprefix $(INCLUDE_DIR)/ft/,$(SRC_FILES) $(BONUS_FILES))) | grep -vF "Writing to" || true
-
+	@zsh -c "c_formatter_42 **/*.c **/*.h"
 
 subject: subject.txt
 	@bat --plain subject.txt
@@ -114,9 +124,6 @@ subject.txt:
 
 fuck_raphael:
 	@echo "Oui"
-
-submit: format
-	@./submit.sh
 
 bonus: $(BONUS_OBJ) $(OBJ)
 	@printf \\n$(COL_GRAY)Building\ Output\ $(COL_WHITE)$(COL_BOLD)%-28s$(COL_RESET)\  \

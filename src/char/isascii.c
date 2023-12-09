@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/char/isascii.h"
+#include "me/char/isascii.h"
 
-t_i32	me_isascii(t_i32 chr)
+bool	me_isascii(char chr)
 {
 	return (0 <= chr && chr <= 127);
 }

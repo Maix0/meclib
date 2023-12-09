@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/ll/lstadd_front.h"
-#include "ft/ll/lstnew.h"
+#include "me/list/list_add_front.h"
+#include "me/list/list_alloc_node.h"
 
 void	list_add_front(t_list **lst, t_list *new)
 {

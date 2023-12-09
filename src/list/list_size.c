@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/ll/lstsize.h"
+#include "me/list/list_size.h"
 
 t_usize	list_size(t_list *lst)
 {

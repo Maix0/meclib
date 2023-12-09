@@ -6,21 +6,20 @@
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 15:53:21 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/12/09 15:00:31 by maiboyer         ###   ########.fr       */
+/*   Updated: 2023/12/09 18:14:47 by maiboyer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/mem/mem_set_zero.h"
-#include "ft/mem/mem_alloc_array.h"
+#include "me/mem/mem_alloc.h"
+#include "me/mem/mem_alloc_array.h"
 #include <stdlib.h>
 
 void	*mem_alloc_array(t_usize item_count, t_usize item_size)
 {
 	t_usize	multiplied;
-	void	*outptr;
 
 	multiplied = item_count * item_size;
 	if (multiplied == 0 || multiplied / item_count != item_size)
 		return (NULL);
-	return mem_alloc(multiplied);
+	return (mem_alloc(multiplied));
 }

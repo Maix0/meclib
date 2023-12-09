@@ -6,24 +6,24 @@
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 11:11:01 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/12/09 14:59:17 by maiboyer         ###   ########.fr       */
+/*   Updated: 2023/12/09 16:53:21 by maiboyer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/string/strlen.h"
-#include "ft/string/str_n_find_str.h"
+#include "me/string/str_len.h"
+#include "me/string/str_n_find_str.h"
 
 static t_str	local_get_end_of_search(t_usize len, t_str str)
 {
-	t_usize	str_len;
+	t_usize	out_len;
 
-	str_len = str_len(str);
-	if (len > str_len)
-		len = str_len;
+	out_len = str_len(str);
+	if (len > out_len)
+		len = out_len;
 	return (str + len);
 }
 
-char	*str_n_find_str(t_const_str str, t_const_str to_find, t_usize len)
+const char	*str_n_find_str(t_const_str str, t_const_str to_find, t_usize len)
 {
 	t_str	needle;
 	t_str	haystack;

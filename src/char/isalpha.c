@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/char/isalpha.h"
+#include "me/char/isalpha.h"
 
-t_i32	me_isalpha(t_i32 chr)
+bool	me_isalpha(char chr)
 {
 	return (('z' >= chr && chr >= 'a') || ('Z' >= chr && chr >= 'A'));
 }

@@ -10,25 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/fs/write.h"
-#include "ft/mem/mem_set.h"
-#include "ft/num/putnbr_fd.h"
+#include "me/fs/putnbr_fd.h"
+#include "me/fs/write.h"
+#include "me/mem/mem_set.h"
 
 static void	me_inner(t_u64 nb, t_str out, t_usize *idx)
 {
-	t_bool	need_print;
+	bool	need_print;
 	t_u64	modulus;
 	char	c;
 
 	modulus = 1000000000;
-	need_print = FALSE;
+	need_print = false;
 	while (modulus)
 	{
 		c = (char)(nb / modulus);
 		if (c != 0 || need_print)
 		{
 			out[(*idx)++] = c + '0';
-			need_print = TRUE;
+			need_print = true;
 		}
 		nb = nb % modulus;
 		modulus /= 10;
