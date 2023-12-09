@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   malloc.c                                           :+:      :+:    :+:   */
+/*   isspace.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/06 14:47:49 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/12/08 16:25:26 by maiboyer         ###   ########.fr       */
+/*   Created: 2023/11/06 14:26:25 by maiboyer          #+#    #+#             */
+/*   Updated: 2023/11/08 02:39:24 by maiboyer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "me/mem/malloc.h"
+#include "ft/char/isspace.h"
 
-void *me_malloc(t_usize size)
+t_i32	me_isspace(t_i32 chr)
 {
-	void  *out;
-	size_t i;
-
-	i = 0;
-	out = malloc(size);
-	while (out && i < size)
-		((t_u8 *)out)[i++] = 0;
-	return out;
+	return (chr == ' ' || chr == '\f' || chr == '\n' || chr == '\r'
+		|| chr == '\t' || chr == '\v');
 }

@@ -1,42 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memmove.c                                          :+:      :+:    :+:   */
+/*   mem_compare.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:16:02 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/12/08 16:26:27 by maiboyer         ###   ########.fr       */
+/*   Updated: 2023/12/09 15:00:58 by maiboyer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "me/mem/memmove.h"
+#include "ft/mem/memcmp.h"
 
-void *me_memmove(void *destination, const void *source, t_usize count)
+t_i32	mem_compare(const void *lhs, const void *rhs, t_usize count)
 {
-	t_usize		i;
-	t_u8	   *dst;
-	const t_u8 *src;
+	t_usize	i;
+	t_u8	*lhs_;
+	t_u8	*rhs_;
 
 	i = 0;
-	dst = (t_u8 *)destination;
-	src = (const t_u8 *)source;
-	if (dst < src)
+	lhs_ = (t_u8 *)lhs;
+	rhs_ = (t_u8 *)rhs;
+	while (i < count)
 	{
-		while (i < count)
-		{
-			dst[i] = src[i];
-			i++;
-		}
+		if (lhs_[i] - rhs_[i])
+			return ((t_i32)(lhs_[i] - rhs_[i]));
+		i++;
 	}
-	else if (dst > src)
-	{
-		i = count;
-		while (i > 0)
-		{
-			i--;
-			dst[i] = src[i];
-		}
-	}
-	return (destination);
+	return (0);
 }

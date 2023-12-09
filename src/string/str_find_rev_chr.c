@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memchr.c                                           :+:      :+:    :+:   */
+/*   str_find_rev_chr.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 11:16:02 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/11/06 11:40:08 by maiboyer         ###   ########.fr       */
+/*   Created: 2023/11/04 17:29:13 by maiboyer          #+#    #+#             */
+/*   Updated: 2023/12/09 14:47:47 by maiboyer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "me/mem/memchr.h"
+#include "ft/string/strlen.h"
+#include "ft/string/strrchr.h"
 
-void	*me_memchr(void *buf, t_i32 find, t_usize count)
+char	*str_find_rev_chr(t_const_str str, char chr)
 {
-	t_usize	i;
-	t_u8	value;
-	t_u8	*buf_bytes;
+	t_usize	index;
 
-	i = 0;
-	buf_bytes = (t_u8 *)buf;
-	value = (t_u8)find;
-	while (i < count)
+	index = me_strlen((t_str)str);
+	while (index >= 0)
 	{
-		if (buf_bytes[i] == value)
-			return ((void *)&buf_bytes[i]);
-		i++;
+		if (str[index] == chr)
+			return ((char *)&str[index]);
+		index--;
 	}
 	return (NULL);
 }

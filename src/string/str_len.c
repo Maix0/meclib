@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memcmp.c                                           :+:      :+:    :+:   */
+/*   str_len.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 11:16:02 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/12/08 16:25:53 by maiboyer         ###   ########.fr       */
+/*   Created: 2023/11/04 17:07:41 by maiboyer          #+#    #+#             */
+/*   Updated: 2023/12/09 14:52:13 by maiboyer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "me/mem/memcmp.h"
+#include "ft/string/strlen.h"
 
-t_i32 me_memcmp(const void *lhs, const void *rhs, t_usize count)
+t_usize	str_len(t_const_str str)
 {
-	t_usize		i;
-	const t_u8 *lhs_;
-	const t_u8 *rhs_;
+	t_usize	out;
 
-	i = 0;
-	lhs_ = (const t_u8 *)lhs;
-	rhs_ = (const t_u8 *)rhs;
-	while (i < count)
-	{
-		if (lhs_[i] - rhs_[i])
-			return ((t_i32)(lhs_[i] - rhs_[i]));
-		i++;
-	}
-	return (0);
+	out = 0;
+	while (str[out])
+		out++;
+	return (out);
 }

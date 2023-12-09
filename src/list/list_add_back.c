@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bzero.c                                            :+:      :+:    :+:   */
+/*   list_add_back.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 11:58:11 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/11/06 11:59:50 by maiboyer         ###   ########.fr       */
+/*   Created: 2023/11/09 20:38:45 by maiboyer          #+#    #+#             */
+/*   Updated: 2023/12/09 15:02:42 by maiboyer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "me/mem/bzero.h"
+#include "ft/ll/lstadd_back.h"
+#include "ft/ll/lstlast.h"
 
-void	me_bzero(void *buf, t_usize count)
+void	list_add_back(t_list **list, t_list *new)
 {
-	t_u8	*buffer;
-	t_usize	index;
-
-	index = 0;
-	buffer = (t_u8 *)buf;
-	while (index < count)
-	{
-		buffer[index] = 0;
-		index++;
-	}
+	if (*list)
+		list_get_last(*list)->next = new;
+	else
+		*list = new;
 }

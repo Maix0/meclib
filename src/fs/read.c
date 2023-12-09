@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memcpy.c                                           :+:      :+:    :+:   */
+/*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 11:16:02 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/12/08 16:26:04 by maiboyer         ###   ########.fr       */
+/*   Created: 2023/11/03 15:21:19 by maiboyer          #+#    #+#             */
+/*   Updated: 2023/11/03 15:56:19 by maiboyer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "me/mem/memcpy.h"
+#include "ft/fs/read.h"
+#include <unistd.h>
 
-void *me_memcpy(void *destination, const void *source, t_usize count)
+t_u64	me_read(t_file fd, t_u8 *buffer, t_i64 buffer_max, t_bool *eof_out)
 {
-	t_usize		i;
-	t_u8	   *dst;
-	const t_u8 *src;
+	ssize_t	out;
 
-	i = 0;
-	dst = (t_u8 *)destination;
-	src = (const t_u8 *)source;
-	if (dst == src)
-		return (destination);
-	while (i < count)
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	return (destination);
+	out = read(fd, buffer, buffer_max);
+	if (out == 0 && buffer_max != 0 && eof_out != NULL)
+		*eof_out = TRUE;
+	return (out);
 }
