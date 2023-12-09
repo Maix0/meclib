@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft/string/strlen.h"
-#include "ft/string/strnstr.h"
+#include "ft/string/str_n_find_str.h"
 
 static t_str	local_get_end_of_search(t_usize len, t_str str)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/string/strchr.h"
+#include "ft/string/str_find_chr.h"
 #include "ft/string/str_l_copy.h"
 #include "ft/string/strlen.h"
 #include "ft/string/str_trim.h"

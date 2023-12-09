@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/string/strjoin.h"
+#include "ft/string/str_join.h"
 #include "ft/string/str_l_cat.h"
 #include "ft/string/str_l_copy.h"
 #include "ft/string/strlen.h"

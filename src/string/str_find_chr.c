@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/string/strchr.h"
+#include "ft/string/str_find_chr.h"
 
 char	*str_find_chr(t_const_str str, char chr)
 {

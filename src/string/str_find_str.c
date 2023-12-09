@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/string/strnstr.h"
+#include "ft/string/str_n_find_str.h"
 
 char	*str_find_str(t_const_str str, t_const_str to_find)
 {
@@ -46,10 +46,10 @@ int	main(int argc, char *argv[]) {
 	printf("HAYSTACK = '%s'\n", argv[1]);
 	printf(" NEEDLE  = '%s'\n", argv[2]);
 
-	printf("libc: %p : '%s'\n", strstr(argv[1], argv[2]), strstr(argv[1],
+	printf("libc: %p : '%s'\n", str_find_str(argv[1], argv[2]), str_find_str(argv[1],
 			argv[2]));
 	printf(" ft : %p : '%s'\n",
-		me_strstr(argv[1], argv[2]),
-		me_strstr(argv[1], argv[2]));
+		me_str_find_str(argv[1], argv[2]),
+		me_str_find_str(argv[1], argv[2]));
 }
 R*/

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/string/strdup.h"
+#include "ft/string/str_clone.h"
 #include "ft/string/str_l_copy.h"
 #include "ft/string/strlen.h"
 #include <stdlib.h>

@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/string/strdup.h"
-#include "ft/string/strmapi.h"
+#include "ft/string/str_clone.h"
+#include "ft/string/str_map.h"
 
 t_str	str_map(t_str_const s, char (*f)(t_usize, char))
 {

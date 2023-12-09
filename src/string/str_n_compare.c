@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/string/strncmp.h"
+#include "ft/string/str_n_compare.h"
 
 // PLEASE FIX THIS FUNCTION IF NEEDED !
 t_i32	str_n_compare(t_const_str lhs, t_const_str rhs, t_usize n)

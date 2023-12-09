@@ -46,9 +46,9 @@ int main()
 	t_hashmap_str *hmap =
 		new_hashmap_str(&me_hash_str, &me_cmp_str, &me_free_kv_str);
 
-	insert_hashmap_str(hmap, strdup("BANANE"), strdup("STUFF"));
-	insert_hashmap_str(hmap, strdup("POMME"), strdup("OI"));
-	insert_hashmap_str(hmap, strdup("YESS"), strdup("YAS"));
+	insert_hashmap_str(hmap, str_clone("BANANE"), str_clone("STUFF"));
+	insert_hashmap_str(hmap, str_clone("POMME"), str_clone("OI"));
+	insert_hashmap_str(hmap, str_clone("YESS"), str_clone("YAS"));
 	key = "BANANE";
 	printf("hmap[%s] = %s\n", key, *get_hashmap_str(hmap, &key));
 	key = "POMME";

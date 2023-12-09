@@ -12,7 +12,7 @@
 
 #include "ft/mem/memset.h"
 #include "ft/num/itoa.h"
-#include "ft/string/strdup.h"
+#include "ft/string/str_clone.h"
 #include <stdlib.h>
 
 static void	me_itoa_inner(t_u64 nb, t_str out)
@@ -54,7 +54,7 @@ t_str	me_itoa(t_i32 nb)
 		out[0] = '0';
 	else
 		me_itoa_inner(n, out);
-	return (me_strdup(out));
+	return (me_str_clone(out));
 }
 /*R
 int	main(void)

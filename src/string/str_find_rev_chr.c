@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft/string/strlen.h"
-#include "ft/string/strrchr.h"
+#include "ft/string/str_find_rev_chr.h"
 
 char	*str_find_rev_chr(t_const_str str, char chr)
 {
