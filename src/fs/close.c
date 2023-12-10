@@ -6,7 +6,7 @@
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 15:56:56 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/11/04 16:08:10 by maiboyer         ###   ########.fr       */
+/*   Updated: 2023/12/10 19:05:48 by maix             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ bool	me_close(t_file file, t_i32 *error)
 	out = res != 0;
 	if (res && error != NULL)
 		*error = res;
-	return (res);
+	return (out);
 }
