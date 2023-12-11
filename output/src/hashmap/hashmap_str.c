@@ -10,28 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "me/hashmap/hashmap_str.h"
 #include "me/hash/hasher.h"
 #include "me/hash/sip.h"
+#include "me/hashmap/hashmap_str.h"
 #include "me/mem/mem_alloc.h"
 #include "me/mem/mem_alloc_array.h"
 #include "me/mem/mem_copy.h"
 #include "me/types.h"
 #include <stdlib.h>
 
-t_hashmap_str *new_hashmap_str(t_hash_str_fn hfunc,
-											   t_eq_str_fn	 cfunc,
-											   t_drop_str_fn drop)
+t_hashmap_str	*new_hashmap_str(t_hash_str_fn hfunc, t_eq_str_fn cfunc,
+		t_drop_str_fn drop)
 {
-	return (new_hashmap_with_buckets_str(hfunc, cfunc, drop,
-												 DEFAULT_BUCKETS));
+	return (new_hashmap_with_buckets_str(hfunc, cfunc, drop, DEFAULT_BUCKETS));
 }
 
-t_hashmap_str *new_hashmap_with_buckets_str(
-	t_hash_str_fn hfunc, t_eq_str_fn cfunc,
-	t_drop_str_fn drop, size_t buckets)
+t_hashmap_str	*new_hashmap_with_buckets_str(t_hash_str_fn hfunc,
+		t_eq_str_fn cfunc, t_drop_str_fn drop, size_t buckets)
 {
-	t_hashmap_str *hmap;
+	t_hashmap_str	*hmap;
 
 	hmap = mem_alloc(sizeof(*hmap));
 	if (hmap == NULL)
@@ -47,9 +44,9 @@ t_hashmap_str *new_hashmap_with_buckets_str(
 	return (hmap);
 }
 
-void drop_hashmap_str(t_hashmap_str *hmap)
+void	drop_hashmap_str(t_hashmap_str *hmap)
 {
-	t_usize index;
+	t_usize	index;
 
 	index = 0;
 	while (index < hmap->num_buckets)
@@ -66,12 +63,10 @@ void drop_hashmap_str(t_hashmap_str *hmap)
 	free(hmap);
 }
 
-t_entry_str *hashmap_get_entry__str(t_hashmap_str *hmap,
-													size_t		  hashed_key,
-													t_str *key,
-													t_entry_str **prev)
+t_entry_str	*hashmap_get_entry__str(t_hashmap_str *hmap, size_t hashed_key,
+		t_str *key, t_entry_str **prev)
 {
-	t_entry_str *entry;
+	t_entry_str	*entry;
 
 	entry = hmap->buckets[hashed_key % hmap->num_buckets];
 	while (entry != NULL)
@@ -79,19 +74,18 @@ t_entry_str *hashmap_get_entry__str(t_hashmap_str *hmap,
 		if (!hmap->cfunc(&entry->kv.key, key))
 		{
 			*prev = entry;
-			break;
+			break ;
 		}
 		entry = entry->next;
 	}
 	return (entry);
 }
 
-void insert_hashmap_str(t_hashmap_str *hmap, t_str key,
-								t_str value)
+void	insert_hashmap_str(t_hashmap_str *hmap, t_str key, t_str value)
 {
-	size_t				 hashed_key;
-	t_entry_str *prev;
-	t_entry_str *entry;
+	size_t		hashed_key;
+	t_entry_str	*prev;
+	t_entry_str	*entry;
 
 	hmap->hfunc(&hmap->hasher, &key);
 	hashed_key = hasher_finish(hmap->hasher);

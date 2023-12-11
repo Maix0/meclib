@@ -18,4 +18,3 @@
 t_usize	str_len(t_const_str str);
 
 #endif
-

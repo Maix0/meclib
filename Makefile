@@ -6,7 +6,7 @@
 #    By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/03 13:20:01 by maiboyer          #+#    #+#              #
-#    Updated: 2023/12/09 18:54:41 by maiboyer         ###   ########.fr        #
+#    Updated: 2023/12/11 19:04:17 by maiboyer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,6 @@ COL_RESET		=	\\e[0m
 .PHONY: so
 
 all: $(NAME)
-drwxr-xr-x     - nobody    8 Dec 06:34  
 
 get_lib:
 	@printf $(LIB_NAME)/$(NAME)
@@ -65,7 +64,7 @@ get_lib:
 $(NAME): $(OBJ) libs_build
 	@printf \\n$(COL_GRAY)Building\ Output\ $(COL_WHITE)$(COL_BOLD)%-28s$(COL_RESET)\  \
 		$(BUILD_DIR)/$(NAME)
-	@#cc $(OBJ) libft/libft.a
+	@#cc $(OBJ) libme/libft.a
 	@ar rcs $(BUILD_DIR)/$(NAME) $(OBJ)
 	@printf $(COL_GREEN)done$(COL_RESET)\\n
 
@@ -123,7 +122,7 @@ subject.txt:
 	@curl $(SUBJECT_URL) | pdftotext -layout -nopgbrk - subject.txt
 
 fuck_raphael:
-	@echo "Oui"
+	@echo "Oh que oui~~~\net jte nioc"
 
 generate_filelist:
 	@/bin/zsh -c "tree -iFf --noreport output | rg '^output/src/(.*)\.c\$$' --replace '\$$1' | sort -u" > ./generic_files.list

@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   u64.h                                              :+:      :+:    :+:   */
+/*   hash_unsigned.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/11 14:10:03 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/12/11 17:59:34 by maiboyer         ###   ########.fr       */
+/*   Created: 2023/12/11 17:25:23 by maiboyer          #+#    #+#             */
+/*   Updated: 2023/12/11 17:25:39 by maiboyer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef U64_H
-# define U64_H
+#include "me/hash/hasher.h"
+#include "me/types.h"
 
-# include "me/types.h"
-
-t_u64	u64_rotate_left(t_u64 n, t_usize by);
-t_u64	u64_rotate_right(t_u64 n, t_usize by);
-
-t_u64	u64_from_7bytes(t_u8 *bytes, t_usize start, t_usize len);
-t_u64	u64_from_bytes(t_u8 *bytes, t_usize len);
-
-#endif
+void	hasher_write_bytes(t_hasher *hasher, t_u8 *bytes, t_usize count)
+{
+	hasher->hash_bytes(hasher->hasher, bytes, count);
+}

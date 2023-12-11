@@ -6,7 +6,7 @@
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 14:30:56 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/12/11 15:40:19 by maiboyer         ###   ########.fr       */
+/*   Updated: 2023/12/11 19:09:52 by maiboyer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,27 @@ t_u64	u64_from_7bytes(t_u8 *msg, t_usize start, t_usize len)
 	}
 	if (i + 1 < len)
 	{
-		temp_val = ((t_u64)(msg[start + i + 1]) << (8 * 1)) | \
-		(t_u64)(msg[start + i]);
+		temp_val = ((t_u64)(msg[start + i + 1]) << (8 * 1)) | (t_u64)(msg[start \
+			+ i]);
 		out |= temp_val << (i * 8);
 		i += 2;
 	}
 	if (i++ < len)
 		out |= (t_u64)(msg[start + i - 1]) << ((i - 1) * 8);
+	return (out);
+}
+
+t_u64	u64_from_bytes(t_u8 *bytes, t_usize len)
+{
+	t_u64	out;
+	t_usize	i;
+
+	i = 0;
+	out = 0;
+	while (i < len && i < 8)
+	{
+		out |= ((t_u64)(bytes[i])) << (8 * i);
+		i++;
+	}
 	return (out);
 }

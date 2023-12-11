@@ -31,7 +31,7 @@ t_vec_str	vec_str_new(t_usize capacity)
 bool	vec_str_push(t_vec_str *vec, t_str element)
 {
 	t_str	*temp_buffer;
-	size_t			new_capacity;
+	size_t	new_capacity;
 
 	if (vec == NULL)
 		return (true);
@@ -64,8 +64,7 @@ bool	vec_str_pop(t_vec_str *vec, t_str *value)
 	return (false);
 }
 
-void	vec_str_free(t_vec_str vec,
-		void (*free_elem)(t_str))
+void	vec_str_free(t_vec_str vec, void (*free_elem)(t_str))
 {
 	if (free_elem)
 	{

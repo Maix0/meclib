@@ -15,6 +15,6 @@
 
 # include "me/types.h"
 
-t_str	str_str_substringing(t_const_str str, t_usize start, t_usize len);
+t_str	str_substring(t_const_str str, t_usize start, t_usize len);
 
 #endif

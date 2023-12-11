@@ -1,3 +1,4 @@
+buffered_str/mod
 char/isalnum
 char/isalpha
 char/isascii
@@ -18,7 +19,10 @@ fs/putnbr_fd
 fs/putstr_fd
 fs/read
 fs/write
+gnl/get_next_line
 hash/hasher
+hash/hash_signed
+hash/hash_unsigned
 hash/sip/sip13
 hash/sip/sip_utils
 hash/sip/sip_utils2
@@ -45,6 +49,18 @@ num/u64/from_bytes
 num/u64/rotate
 num/u8/rotate
 num/usize/rotate
+printf/formatter/char
+printf/formatter/decimal
+printf/formatter/hex
+printf/formatter/oct
+printf/formatter/ptr
+printf/formatter/unsigned_decimal
+printf/formatter/utils
+printf/formatter/utils2
+printf/formatter/utils3
+printf/formatter/utils_numbers
+printf/matchers
+printf/printf
 string/str_clone
 string/str_find_chr
 string/str_find_rev_chr

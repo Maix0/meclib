@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   u64.h                                              :+:      :+:    :+:   */
+/*   buf_str.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/11 14:10:03 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/12/11 17:59:34 by maiboyer         ###   ########.fr       */
+/*   Created: 2023/11/16 17:54:28 by maiboyer          #+#    #+#             */
+/*   Updated: 2023/11/22 12:39:42 by maiboyer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef U64_H
-# define U64_H
-
+#ifndef BUF_STR_H
+# define BUF_STR_H
 # include "me/types.h"
 
-t_u64	u64_rotate_left(t_u64 n, t_usize by);
-t_u64	u64_rotate_right(t_u64 n, t_usize by);
-
-t_u64	u64_from_7bytes(t_u8 *bytes, t_usize start, t_usize len);
-t_u64	u64_from_bytes(t_u8 *bytes, t_usize len);
+typedef struct s_buffer_str
+{
+	t_str		buf;
+	t_usize		capacity;
+	t_usize		len;
+}				t_buffer_str;
+bool			push_str_buffer(t_buffer_str *buf, t_const_str to_push);
+t_buffer_str	alloc_new_buffer(t_usize capacity);
 
 #endif
