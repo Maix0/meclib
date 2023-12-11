@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sip13.c                                            :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/10 19:32:28 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/12/11 15:38:13 by maiboyer         ###   ########.fr       */
+/*   Created: 2023/12/11 14:08:55 by maiboyer          #+#    #+#             */
+/*   Updated: 2023/12/11 14:13:32 by maiboyer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "me/hash/sip.h"
-#include "me/hash/sip/sip_utils.h"
-#include "me/mem/mem_alloc.h"
+#include "me/num/u32.h"
 
-t_hasher	hasher_sip13_new(void)
+t_u32	u32_rotate_left(t_u32 value, t_usize by)
 {
-	t_hasher	out;
-	t_sip13		*inner;
+	by &= sizeof(value) * 8 - 1;
+	if (by == 0)
+		return (value);
+	return ((value << by) | (value >> (sizeof(value) * 8 - by)));
+}
 
-	inner = mem_alloc(sizeof(t_sip13));
-	inner->state = create_state_with_key(0, 0);
-	out.hasher = inner;
-	out.hash_bytes = (t_hash_bytes)sip13_write_bytes;
-	out.finish = (t_hash_finish)sip13_finish;
-	return (out);
+t_u32	u32_rotate_right(t_u32 value, t_usize by)
+{
+	by &= sizeof(value) * 8 - 1;
+	if (by == 0)
+		return (value);
+	return ((value >> by) | (value << (sizeof(value) * 8 - by)));
 }

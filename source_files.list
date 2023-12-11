@@ -18,6 +18,10 @@ fs/putnbr_fd
 fs/putstr_fd
 fs/read
 fs/write
+hash/hasher
+hash/sip/sip13
+hash/sip/sip_utils
+hash/sip/sip_utils2
 list/list_add_back
 list/list_add_front
 list/list_alloc_node
@@ -35,6 +39,12 @@ mem/mem_find
 mem/mem_move
 mem/mem_set
 mem/mem_set_zero
+num/u16/rotate
+num/u32/rotate
+num/u64/from_bytes
+num/u64/rotate
+num/u8/rotate
+num/usize/rotate
 string/str_clone
 string/str_find_chr
 string/str_find_rev_chr

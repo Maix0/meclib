@@ -6,7 +6,7 @@
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 11:00:22 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/12/09 18:23:26 by maiboyer         ###   ########.fr       */
+/*   Updated: 2023/12/11 15:24:44 by maiboyer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #define DEFAULT_BUCKETS 750
 
+#include "me/hash/hasher.h"
 #include "me/types.h"
 #include <stddef.h>
 #include <stdint.h>
@@ -28,7 +29,7 @@ typedef struct s_kv_C__PREFIX__
 	C__VALTYPE__ val;
 } t_kv_C__PREFIX__;
 
-typedef size_t (*t_hash_C__PREFIX___fn)(C__KEYTYPE__ *key);
+typedef void (*t_hash_C__PREFIX___fn)(t_hasher *hasher, C__KEYTYPE__ *key);
 typedef void (*t_drop_C__PREFIX___fn)(t_kv_C__PREFIX__ val);
 typedef bool (*t_eq_C__PREFIX___fn)(C__KEYTYPE__ *lhs, C__KEYTYPE__ *rhs);
 
@@ -43,6 +44,7 @@ typedef struct s_hashmap_C__PREFIX__
 {
 	t_entry_C__PREFIX__ **buckets;
 	size_t				  num_buckets;
+	t_hasher			  hasher;
 	t_hash_C__PREFIX___fn hfunc;
 	t_eq_C__PREFIX___fn	  cfunc;
 	t_drop_C__PREFIX___fn drop;

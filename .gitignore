@@ -54,3 +54,4 @@ dkms.conf
 ./generic
 .direnv
 flake.lock
+test

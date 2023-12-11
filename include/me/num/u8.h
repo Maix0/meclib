@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sip_utils.h                                        :+:      :+:    :+:   */
+/*   u8.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maix <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/10 19:34:10 by maix              #+#    #+#             */
-/*   Updated: 2023/12/11 15:17:56 by maiboyer         ###   ########.fr       */
+/*   Created: 2023/12/11 14:10:03 by maiboyer          #+#    #+#             */
+/*   Updated: 2023/12/11 14:17:24 by maiboyer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SIP_UTILS_H
-# define SIP_UTILS_H
-# include "me/hash/sip.h"
+#ifndef U8_H
+# define U8_H
+
 # include "me/types.h"
 
-void		compress(t_sip_state *state);
-t_sip_state	create_state_with_key(t_u64 k0, t_u64 k1);
-t_u64		sip13_finish(t_sip13 *hasher);
-void		sip13_write_bytes(t_sip13 *self, t_u8 *msg, t_usize count);
+t_u8	u8_rotate_left(t_u8 n, t_usize by);
+t_u8	u8_rotate_right(t_u8 n, t_usize by);
 
 #endif
