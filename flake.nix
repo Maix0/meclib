@@ -24,6 +24,7 @@
             pkgs.norminette
             generic_c.packages.${system}.default
             c_formatter_42.packages.${system}.default
+            pkgs.poppler_utils
           ];
         };
       }
