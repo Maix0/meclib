@@ -6,7 +6,7 @@
 #    By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/03 13:20:01 by maiboyer          #+#    #+#              #
-#    Updated: 2023/12/11 19:04:17 by maiboyer         ###   ########.fr        #
+#    Updated: 2023/12/14 18:17:08 by maiboyer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ define_module = $(addprefix $(1)/, $(2))
 BUILD_DIR		=	build
 SRC_DIR			=	src
 INCLUDE_DIR		=	include output/include
-LIBS_DIR		=	
+LIBS_DIR		=	.
 GENERIC_DIR		=	output/src
 GENERIC_INCLUDE	=	output/include
 

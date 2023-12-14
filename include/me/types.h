@@ -6,7 +6,7 @@
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:31:12 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/12/11 18:52:08 by maiboyer         ###   ########.fr       */
+/*   Updated: 2023/12/13 17:31:21 by maiboyer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ typedef unsigned long long	t_u64;
 typedef long long			t_i64;
 typedef ssize_t				t_isize;
 typedef size_t				t_usize;
+
+typedef float 				t_f32;
+typedef double				t_f64;
+
 
 typedef int					t_file;
 typedef struct s_list
