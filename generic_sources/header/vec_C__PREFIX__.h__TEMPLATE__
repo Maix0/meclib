@@ -23,12 +23,12 @@ typedef struct s_vec_C__PREFIX__
 	C__TYPENAME__	*buffer;
 }					t_vec_C__PREFIX__;
 
-t_vec_C__PREFIX__	me_vec_C__PREFIX___new(t_usize capacity);
-bool				me_vec_C__PREFIX___push(t_vec_C__PREFIX__ *vec,
+t_vec_C__PREFIX__	vec_C__PREFIX___new(t_usize capacity);
+bool				vec_C__PREFIX___push(t_vec_C__PREFIX__ *vec,
 						C__TYPENAME__ element);
-bool				me_vec_C__PREFIX___pop(t_vec_C__PREFIX__ *vec,
+bool				vec_C__PREFIX___pop(t_vec_C__PREFIX__ *vec,
 						C__TYPENAME__ *value);
-void				me_vec_C__PREFIX___free(t_vec_C__PREFIX__ vec,
+void				vec_C__PREFIX___free(t_vec_C__PREFIX__ vec,
 						void (*free_elem)(C__TYPENAME__));
 
 #endif
