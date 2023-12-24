@@ -11,24 +11,23 @@
 /* ************************************************************************** */
 
 #ifndef VEC_C__PREFIXUP___H
-# define VEC_C__PREFIXUP___H
+#define VEC_C__PREFIXUP___H
 
 C__TYPEHEADER__
-# include "me/types.h"
+#include "me/types.h"
 
 typedef struct s_vec_C__PREFIX__
 {
-	t_usize			len;
-	t_usize			capacity;
-	C__TYPENAME__	*buffer;
-}					t_vec_C__PREFIX__;
+	t_usize		   len;
+	t_usize		   capacity;
+	C__TYPENAME__ *buffer;
+} t_vec_C__PREFIX__;
 
-t_vec_C__PREFIX__	vec_C__PREFIX___new(t_usize capacity);
-bool				vec_C__PREFIX___push(t_vec_C__PREFIX__ *vec,
-						C__TYPENAME__ element);
-bool				vec_C__PREFIX___pop(t_vec_C__PREFIX__ *vec,
-						C__TYPENAME__ *value);
-void				vec_C__PREFIX___free(t_vec_C__PREFIX__ vec,
-						void (*free_elem)(C__TYPENAME__));
+t_vec_C__PREFIX__ vec_C__PREFIX___new(t_usize capacity);
+bool vec_C__PREFIX___push(t_vec_C__PREFIX__ *vec, C__TYPENAME__ element);
+bool vec_C__PREFIX___pop(t_vec_C__PREFIX__ *vec, C__TYPENAME__ *value);
+void vec_C__PREFIX___free(t_vec_C__PREFIX__ vec,
+						  void (*free_elem)(C__TYPENAME__));
+bool vec_C__PREFIX___reserve(t_vec_C__PREFIX__ *vec, t_usize wanted_capacity);
 
 #endif

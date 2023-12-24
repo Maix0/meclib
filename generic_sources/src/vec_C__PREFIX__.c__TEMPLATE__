@@ -53,6 +53,30 @@ bool	vec_C__PREFIX___push(t_vec_C__PREFIX__ *vec, C__TYPENAME__ element)
 	return (false);
 }
 
+/// Return true in case of an error
+bool	vec_C__PREFIX___reserve(t_vec_C__PREFIX__ *vec, t_usize wanted_capacity)
+{
+	C__TYPENAME__	*temp_buffer;
+	size_t			new_capacity;
+
+	if (vec == NULL)
+		return (true);
+	if (wanted_capacity > vec->capacity)
+	{
+		new_capacity = (vec->capacity * 3) / 2 + 1;
+		while (wanted_capacity > new_capacity)
+			new_capacity = (new_capacity * 3) / 2 + 1;
+		temp_buffer = mem_alloc_array(new_capacity, sizeof(C__TYPENAME__));
+		if (temp_buffer == NULL)
+			return (true);
+		mem_copy(temp_buffer, vec->buffer, vec->len * sizeof(C__TYPENAME__));
+		free(vec->buffer);
+		vec->buffer = temp_buffer;
+		vec->capacity = new_capacity;
+	}
+	return (false);
+}
+
 /// Return true if the vector is empty
 bool	vec_C__PREFIX___pop(t_vec_C__PREFIX__ *vec, C__TYPENAME__ *value)
 {
