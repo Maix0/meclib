@@ -6,14 +6,14 @@
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 15:29:38 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/11/15 12:46:01 by maiboyer         ###   ########.fr       */
+/*   Updated: 2023/12/24 18:58:14 by maiboyer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "me/fs/open.h"
 #include <fcntl.h>
 
-bool	me_open(t_str path, bool read, bool write, t_file *file_out)
+bool	me_open(t_const_str path, bool read, bool write, t_file *file_out)
 {
 	t_file	out;
 	int		flags;
