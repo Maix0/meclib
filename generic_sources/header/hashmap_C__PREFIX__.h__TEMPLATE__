@@ -45,7 +45,7 @@ typedef struct s_entry_C__PREFIX__
 typedef struct s_hashmap_C__PREFIX__
 {
 	t_entry_C__PREFIX__ **buckets;
-	size_t				  num_buckets;
+	t_usize				  num_buckets;
 	t_hasher			  hasher;
 	t_hash_C__PREFIX___fn hfunc;
 	t_eq_C__PREFIX___fn	  cfunc;
@@ -68,9 +68,9 @@ C__VALTYPE__ *get_hashmap_C__PREFIX__(t_hashmap_C__PREFIX__ *hmap,
 									  C__KEYTYPE__			*key);
 void remove_hashmap_C__PREFIX__(t_hashmap_C__PREFIX__ *hmap, C__KEYTYPE__ *key);
 
-t_entry_C__PREFIX__ *hashmap_get_entry__C__PREFIX__(t_hashmap_C__PREFIX__ *hmap,
-													size_t				   hash,
-													C__KEYTYPE__		  *key,
-													t_entry_C__PREFIX__ **prev);
+t_entry_C__PREFIX__ *hashmap_get_entry_C__PREFIX__(t_hashmap_C__PREFIX__ *hmap,
+												   t_usize				  hash,
+												   C__KEYTYPE__			 *key,
+												   t_entry_C__PREFIX__	**prev);
 
 #endif
