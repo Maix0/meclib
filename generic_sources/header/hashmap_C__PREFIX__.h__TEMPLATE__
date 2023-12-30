@@ -37,7 +37,7 @@ typedef bool (*t_eq_C__PREFIX___fn)(C__KEYTYPE__ *lhs, C__KEYTYPE__ *rhs);
 
 typedef struct s_entry_C__PREFIX__
 {
-	size_t						hash_id;
+	t_usize						hash_id;
 	t_kv_C__PREFIX__			kv;
 	struct s_entry_C__PREFIX__ *next;
 } t_entry_C__PREFIX__;
