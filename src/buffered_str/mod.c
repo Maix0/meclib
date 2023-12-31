@@ -19,11 +19,11 @@
 #include "me/types.h"
 #include <stdlib.h>
 
-bool push_str_buffer(t_buffer_str *buf, t_const_str to_push)
+bool	push_str_buffer(t_buffer_str *buf, t_const_str to_push)
 {
-	t_usize to_push_len;
+	t_usize	to_push_len;
 	t_str	temp_buffer;
-	t_usize new_capacity;
+	t_usize	new_capacity;
 
 	if (buf == NULL || to_push == NULL)
 		return (true);
@@ -44,27 +44,26 @@ bool push_str_buffer(t_buffer_str *buf, t_const_str to_push)
 	return (false);
 }
 
-bool push_str_char(t_buffer_str *buf, char to_push)
+bool	push_str_char(t_buffer_str *buf, char to_push)
 {
-	char push_str[2];
+	char	push_str[2];
 
 	push_str[0] = to_push;
 	push_str[1] = 0;
-
 	return (push_str_buffer(buf, push_str));
 }
 
-void str_clear(t_buffer_str *buf)
+void	str_clear(t_buffer_str *buf)
 {
 	mem_set_zero(buf->buf, buf->capacity);
 	buf->len = 0;
-	return;
+	return ;
 }
 
-t_buffer_str alloc_new_buffer(t_usize capacity)
+t_buffer_str	alloc_new_buffer(t_usize capacity)
 {
-	t_buffer_str out;
-	t_str		 buf;
+	t_buffer_str	out;
+	t_str			buf;
 
 	if (capacity == 0)
 		capacity = 16;

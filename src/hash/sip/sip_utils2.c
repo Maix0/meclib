@@ -13,7 +13,7 @@
 #include "me/hash/sip/sip_utils.h"
 #include "me/num/usize.h"
 
-void compress(t_sip_state *state)
+void	compress(t_sip_state *state)
 {
 	state->v0 = state->v0 + state->v1;
 	state->v1 = usize_rotate_left(state->v1, 13);
@@ -31,9 +31,9 @@ void compress(t_sip_state *state)
 	state->v2 = usize_rotate_left(state->v2, 32);
 }
 
-t_sip_state create_state_with_key(t_u64 k0, t_u64 k1)
+t_sip_state	create_state_with_key(t_u64 k0, t_u64 k1)
 {
-	t_sip_state state;
+	t_sip_state	state;
 
 	state = (t_sip_state){.v0 = 0, .v1 = 0, .v2 = 0, .v3 = 0};
 	state.v0 = k0 ^ 0x736f6d6570736575;
@@ -43,9 +43,9 @@ t_sip_state create_state_with_key(t_u64 k0, t_u64 k1)
 	return (state);
 }
 
-t_u64 sip13_reset_and_finish(t_sip13 *self)
+t_u64	sip13_reset_and_finish(t_sip13 *self)
 {
-	t_sip_state state;
+	t_sip_state	state;
 	t_u64		b;
 	t_u64		ret;
 
@@ -64,6 +64,5 @@ t_u64 sip13_reset_and_finish(t_sip13 *self)
 	self->state.v2 = self->k0 ^ 0x6c7967656e657261;
 	self->state.v3 = self->k1 ^ 0x7465646279746573;
 	self->ntail = 0;
-
 	return (ret);
 }
