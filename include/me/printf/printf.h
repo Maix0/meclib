@@ -61,6 +61,6 @@ typedef void			(*t_printf_func)(t_const_str to_write,
 				t_usize to_write_len, void *p_args);
 
 t_usize					ft_printf(t_const_str fmt, ...);
-t_usize					ft_eprintf(t_const_str fmt, ...);
+t_usize					me_eprintf(t_const_str fmt, ...);
 
 #endif

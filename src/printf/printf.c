@@ -72,7 +72,7 @@ t_usize	ft_printf(t_const_str fmt, ...)
 	return (passthru.total_print);
 }
 
-t_usize	ft_eprintf(t_const_str fmt, ...)
+t_usize	me_eprintf(t_const_str fmt, ...)
 {
 	va_list			args;
 	t_fprintf_arg	passthru;
@@ -103,7 +103,7 @@ t_usize	ft_printf(t_const_str fmt, ...)
 	return (len);
 }
 
-t_usize	ft_eprintf(t_const_str fmt, ...)
+t_usize	me_eprintf(t_const_str fmt, ...)
 {
 	va_list	args;
 	t_str	str;
