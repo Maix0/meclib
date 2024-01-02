@@ -1,6 +1,9 @@
 [definition.vec]
 headers = ["generic_sources/header/vec_C__PREFIX__.h__TEMPLATE__"]
-sources = ["generic_sources/src/vec_C__PREFIX__.c__TEMPLATE__"]
+sources = [
+	"generic_sources/src/vec_C__PREFIX__.c__TEMPLATE__",
+	"generic_sources/src/vec_C__PREFIX___functions2.c__TEMPLATE__",
+]
 replace.C__TYPENAME__ = "type"
 replace.C__TYPEHEADER__ = "header_include"
 replace.C__PREFIX__ = "prefix"
@@ -19,19 +22,19 @@ replace.C__TYPEHEADER__ = "header_include"
 replace.C__PREFIX__ = "prefix"
 replace.C__PREFIXUP__ = "prefix"
 
-#[[create.hashmap]]
-#headers_output = "include/me/hashmap/"
-#sources_output = "src/hashmap/"
-#replace.C__VALTYPE__ = "t_str"
-#replace.C__KEYTYPE__ = "t_str"
-#replace.C__TYPEHEADER__ = ''
-#replace.C__PREFIX__ = "str"
-#replace.C__PREFIXUP__ = "STR"
 
 [[create.vec]]
 sources_output = "src/vec/"
 headers_output = "include/me/vec/"
-replace.C__TYPENAME__ = "char"
+replace.C__TYPENAME__ = "t_u8"
 replace.C__TYPEHEADER__ = ''
-replace.C__PREFIX__ = "str_inner_no_use"
-replace.C__PREFIXUP__ = "STR_INNER_NO_USE"
+replace.C__PREFIX__ = "u8"
+replace.C__PREFIXUP__ = "U8"
+
+[[create.vec]]
+sources_output = "src/vec/"
+headers_output = "include/me/vec/"
+replace.C__TYPENAME__ = "t_buffer_str"
+replace.C__TYPEHEADER__ = '#include "me/buffered_str/buf_str.h"'
+replace.C__PREFIX__ = "buf_str"
+replace.C__PREFIXUP__ = "BUF_STR"
