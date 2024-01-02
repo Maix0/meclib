@@ -6,7 +6,7 @@
 #    By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/03 13:20:01 by maiboyer          #+#    #+#              #
-#    Updated: 2024/01/02 14:08:24 by maiboyer         ###   ########.fr        #
+#    Updated: 2024/01/02 14:11:41 by maiboyer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ BONUS_OBJ		=	$(addsuffix .o,$(addprefix $(BUILD_DIR)/,$(BONUS_FILES)))
 OBJ				=	$(addsuffix .o,$(addprefix $(BUILD_DIR)/,$(SRC_FILES))) \
 					$(addsuffix .o,$(addprefix $(BUILD_DIR)/,$(GENERIC_FILES)))
 LIBS			=	$(addprefix $(LIBS_DIR)/,$(LIBS_NAME))
-INCLUDES		=	$(addprefix -I,$(INCLUDE_DIR) $(GENERIC_INCLUDE) $(addsuffix /include,$(LIBS)) vendor/)
+INCLUDES		=	$(addprefix -I,$(INCLUDE_DIR) $(GENERIC_INCLUDE) $(addsuffix /include,$(LIBS)) $(addsuffix /vendor,$(LIBS)) vendor)
 COL_GRAY		=	\\e[90m
 COL_WHITE		=	\\e[37m
 COL_GREEN		=	\\e[32m

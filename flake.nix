@@ -19,12 +19,17 @@
       in {
         devShell = pkgs.mkShell {
           packages = [
-            pkgs.clang
-            pkgs.clang-tools
-            pkgs.norminette
             generic_c.packages.${system}.default
             c_formatter_42.packages.${system}.default
+            pkgs.clang
+            pkgs.clang-tools
+            pkgs.fastmod
+            pkgs.libbsd
+            pkgs.minilibx
+            pkgs.norminette
             pkgs.poppler_utils
+            pkgs.valgrind
+            pkgs.tree
           ];
         };
       }
