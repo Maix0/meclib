@@ -6,7 +6,7 @@
 #    By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/03 13:20:01 by maiboyer          #+#    #+#              #
-#    Updated: 2024/01/02 14:11:41 by maiboyer         ###   ########.fr        #
+#    Updated: 2024/01/03 15:38:50 by maiboyer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,10 +23,10 @@ NAME			=	libme.a
 LIB_NAME		?=	
 TARGET			=	$(NAME)
 CC				=	clang
-CFLAGS			=	-Wall -Wextra -Werror -g2
+CFLAGS			=	-Wall -Wextra -Werror -g2 -lme -L$(BUILD_DIR) -Wno-unused-command-line-argument -MMD
 BONUS_FILES		=	
 LIBS_NAME		=	
-SUBJECT_URL		= 
+SUBJECT_URL		=	
 
 GENERIC_FILES	=	$(shell cat generic_files.list)
 SRC_FILES		=	$(shell cat source_files.list)
@@ -37,8 +37,10 @@ SRC				=	$(addsuffix .c,$(addprefix $(SRC_DIR)/,$(SRC_FILES))) \
 BONUS_OBJ		=	$(addsuffix .o,$(addprefix $(BUILD_DIR)/,$(BONUS_FILES)))
 OBJ				=	$(addsuffix .o,$(addprefix $(BUILD_DIR)/,$(SRC_FILES))) \
 					$(addsuffix .o,$(addprefix $(BUILD_DIR)/,$(GENERIC_FILES)))
+DEPS			=	$(addsuffix .d,$(addprefix $(BUILD_DIR)/,$(SRC_FILES))) \
+					$(addsuffix .d,$(addprefix $(BUILD_DIR)/,$(GENERIC_FILES)))
 LIBS			=	$(addprefix $(LIBS_DIR)/,$(LIBS_NAME))
-INCLUDES		=	$(addprefix -I,$(INCLUDE_DIR) $(GENERIC_INCLUDE) $(addsuffix /include,$(LIBS)) $(addsuffix /vendor,$(LIBS)) vendor)
+INCLUDES		=	$(addprefix -I,$(foreach P,$(INCLUDE_DIR) $(GENERIC_INCLUDE) $(LIBS) $(addsuffix /include,$(LIBS)) vendor $(addsuffix /vendor,$(LIBS)),$(realpath $(P))))
 COL_GRAY		=	\\e[90m
 COL_WHITE		=	\\e[37m
 COL_GREEN		=	\\e[32m
@@ -63,13 +65,14 @@ get_lib:
 
 $(NAME): $(OBJ) libs_build
 	@printf \\n$(COL_GRAY)Building\ Output\ $(COL_WHITE)$(COL_BOLD)%-28s$(COL_RESET)\  \
-		$(BUILD_DIR)/$(NAME)
-	@#cc $(OBJ) libme/libft.a
+		$(NAME)
+	@#$(CC) $(INCLUDES) $(OBJ) $(CFLAGS) -o $(NAME)
 	@ar rcs $(BUILD_DIR)/$(NAME) $(OBJ)
 	@printf $(COL_GREEN)done$(COL_RESET)\\n
 
 libs_build:
 	@- $(foreach LIB,$(LIBS),\
+		mkdir -p $(BUILD_DIR); \
 		printf \\n; \
 		printf $(COL_GRAY)Building\ library\ $(COL_RESET); \
 		printf $(COL_WHITE)$(COL_BOLD)%-25s$(COL_RESET)\\n $(LIB); \
@@ -91,7 +94,7 @@ $(BUILD_DIR)/%.o: $(GENERIC_DIR)/%.c
 
 clean:
 	@- $(foreach LIB,$(LIBS), \
-		make clean LIB_NAME=$(LIB)/ BUILD_DIR=$(realpath $(BUILD_DIR)) -C $(LIB) --no-print-directory;\
+		make clean LIB_NAME=$(LIB)/ BUILD_DIR=$(realpath $(BUILD_DIR)) -C $(LIB) --no-print-directory || true;\
 	)
 	@- $(if $(LIB_NAME),,\
 		printf $(COL_WHITE)Clearing\ Artefacts\ ; \
@@ -103,7 +106,7 @@ clean:
 
 fclean: clean
 	@- $(foreach LIB,$(LIBS), \
-		make fclean LIB_NAME=$(LIB)/ BUILD_DIR=$(realpath $(BUILD_DIR)) -C $(LIB) --no-print-directory;\
+		make fclean LIB_NAME=$(LIB)/ BUILD_DIR=$(realpath $(BUILD_DIR)) -C $(LIB) --no-print-directory || true;\
 	)
 	@printf $(COL_WHITE)Clearing\ Output\ $(COL_GRAY)%-28s$(COL_RESET)\  \
 		\($(LIB_NAME)$(NAME)\)
@@ -133,3 +136,6 @@ bonus: $(BONUS_OBJ) $(OBJ)
 		$(LIB_NAME)$(NAME)
 	@ar rcs $(NAME) $(OBJ) $(BONUS_OBJ)
 	@printf $(COL_GREEN)done$(COL_RESET)\\n
+
+
+-include $(DEPS)
