@@ -13,10 +13,10 @@
 #include "me/fs/open.h"
 #include <fcntl.h>
 
-t_error me_open(t_const_str path, bool read, bool write, t_file *file_out)
+t_error	me_open(t_const_str path, bool read, bool write, t_file *file_out)
 {
-	t_file out;
-	int	   flags;
+	t_file	out;
+	int		flags;
 
 	flags = 0;
 	if (read && write)
@@ -32,11 +32,10 @@ t_error me_open(t_const_str path, bool read, bool write, t_file *file_out)
 	return (NO_ERROR);
 }
 
-
-t_error me_open_truncate(t_const_str path, t_file *file_out)
+t_error	me_open_truncate(t_const_str path, t_file *file_out)
 {
-	t_file out;
-	int	   flags;
+	t_file	out;
+	int		flags;
 
 	flags = O_WRONLY | O_CREAT;
 	out = open(path, flags, 0666);

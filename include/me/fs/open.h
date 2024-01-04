@@ -11,11 +11,11 @@
 /* ************************************************************************** */
 
 #ifndef OPEN_H
-#define OPEN_H
+# define OPEN_H
 
-#include "me/types.h"
+# include "me/types.h"
 
-t_error me_open(t_const_str path, bool read, bool write, t_file *file_out);
-t_error me_open_truncate(t_const_str path, t_file *file_out);
+t_error	me_open(t_const_str path, bool read, bool write, t_file *file_out);
+t_error	me_open_truncate(t_const_str path, t_file *file_out);
 
 #endif

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sprite.h                                            :+:      :+:    :+:   */
+/*   sprite.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 21:59:18 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/12/31 15:24:43 by maiboyer         ###   ########.fr       */
+/*   Updated: 2024/01/05 00:09:47 by maiboyer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef IMAGE_H
-# define IMAGE_H
+#ifndef SPRITE_H
+# define SPRITE_H
 
 # include "me/blx/colors.h"
 # include "me/types.h"
