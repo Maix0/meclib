@@ -6,17 +6,17 @@
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 15:29:38 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/12/24 18:58:14 by maiboyer         ###   ########.fr       */
+/*   Updated: 2024/01/04 20:00:33 by maiboyer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "me/fs/open.h"
 #include <fcntl.h>
 
-bool	me_open(t_const_str path, bool read, bool write, t_file *file_out)
+t_error me_open(t_const_str path, bool read, bool write, t_file *file_out)
 {
-	t_file	out;
-	int		flags;
+	t_file out;
+	int	   flags;
 
 	flags = 0;
 	if (read && write)
@@ -25,9 +25,23 @@ bool	me_open(t_const_str path, bool read, bool write, t_file *file_out)
 		flags = O_RDONLY;
 	else if (write)
 		flags = O_WRONLY;
-	out = open(path, flags);
+	out = open(path, flags, 0666);
 	if (out < 0)
-		return (true);
+		return (ERROR);
 	*file_out = out;
-	return (false);
+	return (NO_ERROR);
+}
+
+
+t_error me_open_truncate(t_const_str path, t_file *file_out)
+{
+	t_file out;
+	int	   flags;
+
+	flags = O_WRONLY | O_CREAT;
+	out = open(path, flags, 0666);
+	if (out < 0)
+		return (ERROR);
+	*file_out = out;
+	return (NO_ERROR);
 }
