@@ -93,6 +93,7 @@ t_error vec_C__PREFIX___any(t_vec_C__PREFIX__ *vec,
 	}
 	return (ERROR);
 }
+
 void vec_C__PREFIX___iter(t_vec_C__PREFIX__ *vec,
 						  void (*fn)(t_usize index, C__TYPENAME__ *value,
 									 void *state),

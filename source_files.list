@@ -62,6 +62,7 @@ mem/mem_alloc_array
 mem/mem_compare
 mem/mem_copy
 mem/mem_find
+mem/mem_find_bytes
 mem/mem_move
 mem/mem_set
 mem/mem_set_zero
