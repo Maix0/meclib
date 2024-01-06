@@ -6,19 +6,21 @@
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:16:02 by maiboyer          #+#    #+#             */
-/*   Updated: 2024/01/05 17:56:52 by maiboyer         ###   ########.fr       */
+/*   Updated: 2024/01/06 17:14:23 by maiboyer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "me/mem/mem_find_bytes.h"
+#include "stdio.h"
 
-void *mem_find_bytes(void *buf, t_u8 *find, t_usize find_len, t_usize count)
+void	*mem_find_bytes(void *buf, t_u8 *find, t_usize find_len, t_usize count)
 {
-	t_usize i;
-	t_usize j;
-	t_u8   *buf_bytes;
+	t_usize	i;
+	t_usize	j;
+	t_u8	*buf_bytes;
 
 	i = 0;
+	printf("inside\n");
 	buf_bytes = (t_u8 *)buf;
 	while (i < count)
 	{
@@ -26,7 +28,7 @@ void *mem_find_bytes(void *buf, t_u8 *find, t_usize find_len, t_usize count)
 		while (j < find_len && i + j < count)
 		{
 			if (buf_bytes[i + j] != find[j])
-				break;
+				break ;
 			j++;
 		}
 		if (j == find_len)
