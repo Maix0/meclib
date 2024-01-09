@@ -6,7 +6,7 @@
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:31:12 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/12/30 17:44:40 by maiboyer         ###   ########.fr       */
+/*   Updated: 2024/01/09 19:54:03 by maiboyer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_list
 }							t_list;
 
 typedef bool				t_error;
-# define ERROR true
-# define NO_ERROR false
+# define ERROR 1
+# define NO_ERROR 0
 
 #endif
