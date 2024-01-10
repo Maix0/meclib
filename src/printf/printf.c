@@ -6,7 +6,7 @@
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:50:56 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/11/23 14:27:56 by maix             ###   ########.fr       */
+/*   Updated: 2024/01/10 13:14:38 by maiboyer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 #include <stdlib.h>
 
 // p_args is an t_buffer_str;
-static void	ft_printf_add_to_string(t_const_str to_write, t_usize to_write_len,
+static void	me_printf_add_to_string(t_const_str to_write, t_usize to_write_len,
 		void *p_args)
 {
 	t_buffer_str	*out_buf;
@@ -34,20 +34,23 @@ static void	ft_printf_add_to_string(t_const_str to_write, t_usize to_write_len,
 	push_str_buffer(out_buf, to_write);
 }
 
-t_str	ft_printf_str(t_const_str fmt, va_list *arguments)
+t_buffer_str	me_sprintf(t_buffer_str *buf, t_const_str fmt, ...)
 {
 	t_buffer_str	out;
+	va_list			args;
 
-	out = alloc_new_buffer(str_len(fmt));
-	if (out.buf == NULL)
+	if (buf == NULL)
 	{
-		return (NULL);
+		out = alloc_new_buffer(str_len(fmt));
+		buf = &out;
 	}
-	ft_printf_str_inner(fmt, &ft_printf_add_to_string, arguments, (void *)&out);
-	return (out.buf);
+	va_start(args, fmt);
+	me_printf_str_inner(fmt, &me_printf_add_to_string, &args, (void *)buf);
+	va_end(args);
+	return (*buf);
 }
 
-static void	ft_printf_write(t_const_str to_write, t_usize to_write_len,
+static void	me_printf_write(t_const_str to_write, t_usize to_write_len,
 		void *p_args)
 {
 	t_fprintf_arg	*arg;
@@ -57,7 +60,7 @@ static void	ft_printf_write(t_const_str to_write, t_usize to_write_len,
 	arg->total_print += to_write_len;
 }
 
-t_usize	ft_printf(t_const_str fmt, ...)
+t_usize	me_printf(t_const_str fmt, ...)
 {
 	va_list			args;
 	t_fprintf_arg	passthru;
@@ -67,7 +70,7 @@ t_usize	ft_printf(t_const_str fmt, ...)
 		.total_print = 0,
 	};
 	va_start(args, fmt);
-	ft_printf_str_inner(fmt, &ft_printf_write, &args, (void *)&passthru);
+	me_printf_str_inner(fmt, &me_printf_write, &args, (void *)&passthru);
 	va_end(args);
 	return (passthru.total_print);
 }
@@ -82,20 +85,20 @@ t_usize	me_eprintf(t_const_str fmt, ...)
 		.total_print = 0,
 	};
 	va_start(args, fmt);
-	ft_printf_str_inner(fmt, &ft_printf_write, &args, (void *)&passthru);
+	me_printf_str_inner(fmt, &me_printf_write, &args, (void *)&passthru);
 	va_end(args);
 	return (passthru.total_print);
 }
 
 /*
-t_usize	ft_printf(t_const_str fmt, ...)
+t_usize	me_printf(t_const_str fmt, ...)
 {
 	va_list	args;
 	t_str	str;
 	t_usize	len;
 
 	va_start(args, fmt);
-	str = ft_printf_str(fmt, &args);
+	str = me_printf_str(fmt, &args);
 	va_end(args);
 	len = str_len(str);
 	write(1, str, len);
@@ -110,7 +113,7 @@ t_usize	me_eprintf(t_const_str fmt, ...)
 	t_usize	len;
 
 	va_start(args, fmt);
-	str = ft_printf_str(fmt, &args);
+	str = me_printf_str(fmt, &args);
 	va_end(args);
 	len = str_len(str);
 	write(2, str, len);

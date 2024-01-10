@@ -23,7 +23,7 @@ void	ret_reset(t_usize *c_idx, t_usize *nxt, t_const_str fmt)
 	*nxt = (t_usize)(str_find_chr(fmt + *nxt + 1, '%') - fmt);
 }
 
-void	ft_printf_str_inner(t_const_str fmt, t_printf_func f,
+void	me_printf_str_inner(t_const_str fmt, t_printf_func f,
 		va_list *arguments, void *p_args)
 {
 	t_usize	c_idx;

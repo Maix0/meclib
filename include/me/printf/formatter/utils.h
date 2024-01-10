@@ -67,7 +67,7 @@ t_printf_arg		print_substr(t_usize *c_idx, t_usize *nxt, t_const_str fmt,
 void				pad_inner(t_const_str fmt, t_usize *c_idx, t_usize *nxt,
 						t_pad_inner_args extra);
 void				advance_atoi(t_const_str fmt, t_usize *idx);
-void				ft_printf_str_inner(t_const_str fmt, t_printf_func f,
+void				me_printf_str_inner(t_const_str fmt, t_printf_func f,
 						va_list *arguments, void *p_args);
 void				print_sign_if_needed(t_pad_and_stuff_args a, t_printf_arg d,
 						t_printf_func f);

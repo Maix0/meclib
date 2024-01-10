@@ -6,13 +6,14 @@
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:10:27 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/11/23 14:24:58 by maix             ###   ########.fr       */
+/*   Updated: 2024/01/10 13:14:10 by maiboyer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PRINTF_H
 
 # define PRINTF_H
+# include "me/buffered_str/buf_str.h"
 # include "me/types.h"
 
 typedef struct s_fprintf_arg
@@ -60,7 +61,8 @@ typedef struct s_printf_args
 typedef void			(*t_printf_func)(t_const_str to_write,
 				t_usize to_write_len, void *p_args);
 
-t_usize					ft_printf(t_const_str fmt, ...);
+t_usize					me_printf(t_const_str fmt, ...);
 t_usize					me_eprintf(t_const_str fmt, ...);
+t_buffer_str			me_sprintf(t_buffer_str *buf, t_const_str fmt, ...);
 
 #endif
