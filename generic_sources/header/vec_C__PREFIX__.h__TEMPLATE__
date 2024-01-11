@@ -29,7 +29,9 @@ typedef struct s_vec_C__PREFIX__
 t_vec_C__PREFIX__ vec_C__PREFIX___new(t_usize				  capacity,
 									  t_free_C__PREFIX___item free_function);
 t_error vec_C__PREFIX___push(t_vec_C__PREFIX__ *vec, C__TYPENAME__ element);
+t_error vec_C__PREFIX___push_front(t_vec_C__PREFIX__ *vec, C__TYPENAME__ element);
 t_error vec_C__PREFIX___pop(t_vec_C__PREFIX__ *vec, C__TYPENAME__ *value);
+t_error vec_C__PREFIX___pop_front(t_vec_C__PREFIX__ *vec, C__TYPENAME__ *value);
 void	vec_C__PREFIX___free(t_vec_C__PREFIX__ vec);
 t_error vec_C__PREFIX___reserve(t_vec_C__PREFIX__ *vec,
 								t_usize			   wanted_capacity);

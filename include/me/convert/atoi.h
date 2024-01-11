@@ -6,7 +6,7 @@
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 14:14:00 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/12/09 16:38:15 by maiboyer         ###   ########.fr       */
+/*   Updated: 2024/01/11 15:36:12 by maiboyer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,6 @@
 # include "me/types.h"
 
 t_i32	me_atoi(t_const_str str);
+t_i64	me_atoi_64(t_const_str str);
 
 #endif
