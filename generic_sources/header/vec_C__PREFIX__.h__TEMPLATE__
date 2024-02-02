@@ -16,6 +16,7 @@
 C__TYPEHEADER__
 #include "me/types.h"
 
+typedef bool (*t_vec_C__PREFIX___sort_fn)(C__TYPENAME__ *, C__TYPENAME__ *);
 typedef void (*t_free_C__PREFIX___item)(C__TYPENAME__);
 
 typedef struct s_vec_C__PREFIX__
@@ -50,5 +51,7 @@ void	vec_C__PREFIX___iter(t_vec_C__PREFIX__ *vec,
 										void *state),
 							 void *state);
 void	vec_C__PREFIX___reverse(t_vec_C__PREFIX__ *vec);
+void	vec_C__PREFIX___sort(t_vec_C__PREFIX__		  *vec,
+							 t_vec_C__PREFIX___sort_fn is_sorted);
 
 #endif
