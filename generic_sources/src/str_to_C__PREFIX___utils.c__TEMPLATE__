@@ -24,6 +24,7 @@ t_error checked_add_C__PREFIX__(C__TYPE__ lhs, C__TYPE__ rhs, C__TYPE__ *out)
 	*out = (C__TYPE__)(lhs + rhs);
 	return (NO_ERROR);
 }
+
 t_error checked_sub_C__PREFIX__(C__TYPE__ lhs, C__TYPE__ rhs, C__TYPE__ *out)
 {
 	if ((((rhs & (1 << (sizeof(C__TYPE__) - 1)) || rhs == 0) || !C__SIGNED_TYPE__) && (lhs < C__MIN__ + rhs)))
@@ -31,13 +32,14 @@ t_error checked_sub_C__PREFIX__(C__TYPE__ lhs, C__TYPE__ rhs, C__TYPE__ *out)
 	*out = (C__TYPE__)(lhs - rhs);
 	return (NO_ERROR);
 }
+
 t_error checked_mul_C__PREFIX__(C__TYPE__ lhs, C__TYPE__ rhs, C__TYPE__ *out)
 {
 	C__TYPE__ mul;
 
 	mul = lhs * rhs;
 	if (lhs != 0 && mul / lhs != rhs)
-		return (/*me_eprintf("OVERFLOW MUL %i, %i\n", lhs, rhs),*/ERROR);
+		return (ERROR);
 	*out = mul;
 	return (NO_ERROR);
 }
