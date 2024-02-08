@@ -15,27 +15,20 @@
 #include "me/convert/str_to_numbers.h"
 #include "me/string/str_len.h"
 #include "me/types.h"
+#include "me/printf/printf.h"
 
 t_error checked_add_C__PREFIX__(C__TYPE__ lhs, C__TYPE__ rhs, C__TYPE__ *out)
 {
-	C__UNSIGNED_TYPE__ add;
-
-	add = (C__UNSIGNED_TYPE__)lhs + (C__UNSIGNED_TYPE__)rhs;
-	if ((~(lhs ^ rhs) & (lhs ^ add)) & (1 << (sizeof(C__TYPE__) - 1)))
+	if (rhs > 0 && (lhs > C__MAX__ - rhs))
 		return (ERROR);
-
-	*out = (C__TYPE__)add;
+	*out = (C__TYPE__)(lhs + rhs);
 	return (NO_ERROR);
 }
 t_error checked_sub_C__PREFIX__(C__TYPE__ lhs, C__TYPE__ rhs, C__TYPE__ *out)
 {
-	C__UNSIGNED_TYPE__ sub;
-
-	sub = (C__UNSIGNED_TYPE__)lhs - (C__UNSIGNED_TYPE__)rhs;
-	if ((~(lhs ^ rhs) & (lhs ^ sub)) & (1 << (sizeof(C__TYPE__) - 1)))
+	if ((((rhs & (1 << (sizeof(C__TYPE__) - 1)) || rhs == 0) || !C__SIGNED_TYPE__) && (lhs < C__MIN__ + rhs)))
 		return (ERROR);
-
-	*out = (C__TYPE__)sub;
+	*out = (C__TYPE__)(lhs - rhs);
 	return (NO_ERROR);
 }
 t_error checked_mul_C__PREFIX__(C__TYPE__ lhs, C__TYPE__ rhs, C__TYPE__ *out)
@@ -43,8 +36,8 @@ t_error checked_mul_C__PREFIX__(C__TYPE__ lhs, C__TYPE__ rhs, C__TYPE__ *out)
 	C__TYPE__ mul;
 
 	mul = lhs * rhs;
-	if (mul / lhs != rhs)
-		return (ERROR);
+	if (lhs != 0 && mul / lhs != rhs)
+		return (/*me_eprintf("OVERFLOW MUL %i, %i\n", lhs, rhs),*/ERROR);
 	*out = mul;
 	return (NO_ERROR);
 }
