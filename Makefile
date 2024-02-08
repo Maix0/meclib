@@ -6,7 +6,7 @@
 #    By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/03 13:20:01 by maiboyer          #+#    #+#              #
-#    Updated: 2024/01/03 15:38:50 by maiboyer         ###   ########.fr        #
+#    Updated: 2024/02/08 14:26:04 by maiboyer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ NAME			=	libme.a
 LIB_NAME		?=	
 TARGET			=	$(NAME)
 CC				=	clang
-CFLAGS			=	-Wall -Wextra -Werror -g2 -lme -L$(BUILD_DIR) -Wno-unused-command-line-argument -MMD
+CFLAGS			=	-Wall -Werror -Wextra -g2 -lme -L$(BUILD_DIR) -Wno-unused-command-line-argument -MMD
 BONUS_FILES		=	
 LIBS_NAME		=	
 SUBJECT_URL		=	
