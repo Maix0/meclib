@@ -6,7 +6,7 @@
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:10:27 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/11/23 14:24:58 by maix             ###   ########.fr       */
+/*   Updated: 2024/02/09 15:06:53 by maiboyer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 # define PRINTF_H
 # include "me/types.h"
+# include <stdarg.h>
 
 typedef struct s_fprintf_arg
 {
@@ -60,7 +61,9 @@ typedef struct s_printf_args
 typedef void			(*t_printf_func)(t_const_str to_write,
 				t_usize to_write_len, void *p_args);
 
-t_usize					ft_printf(t_const_str fmt, ...);
+t_usize					me_printf(t_const_str fmt, ...);
 t_usize					me_eprintf(t_const_str fmt, ...);
+t_usize					me_vprintf(t_const_str fmt, va_list *args);
+t_usize					me_veprintf(t_const_str fmt, va_list *args);
 
 #endif

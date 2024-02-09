@@ -84,6 +84,7 @@ printf/formatter/utils3
 printf/formatter/utils_numbers
 printf/matchers
 printf/printf
+printf/vprintf
 string/str_clone
 string/str_find_chr
 string/str_find_rev_chr
