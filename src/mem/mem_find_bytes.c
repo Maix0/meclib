@@ -20,7 +20,6 @@ void	*mem_find_bytes(void *buf, t_u8 *find, t_usize find_len, t_usize count)
 	t_u8	*buf_bytes;
 
 	i = 0;
-	printf("inside\n");
 	buf_bytes = (t_u8 *)buf;
 	while (i < count)
 	{
