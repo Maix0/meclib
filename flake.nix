@@ -25,9 +25,7 @@
             pkgs.clang-tools
             pkgs.fastmod
             pkgs.libbsd
-            pkgs.minilibx
             pkgs.norminette
-            pkgs.poppler_utils
             pkgs.valgrind
             pkgs.tree
           ];
