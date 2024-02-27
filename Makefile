@@ -6,7 +6,7 @@
 #    By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/03 13:20:01 by maiboyer          #+#    #+#              #
-#    Updated: 2024/02/08 14:26:04 by maiboyer         ###   ########.fr        #
+#    Updated: 2024/02/27 18:12:39 by maiboyer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,30 +47,18 @@ COL_GREEN		=	\\e[32m
 COL_BOLD		=	\\e[1m
 COL_RESET		=	\\e[0m
 
-.PHONY: all
-.PHONY: libs_build
-.PHONY: bonus
-.PHONY: clean
-.PHONY: fclean
-.PHONY: re
-.PHONY: format
-.PHONY: subject
-.PHONY: submit
-.PHONY: so
+.PHONY = all libs_build bonus clean re format subject so
+
+
+-include $(DEPS)
 
 all: $(NAME)
-
 get_lib:
 	@printf $(LIB_NAME)/$(NAME)
 
-$(NAME): $(OBJ) libs_build
+$(NAME): $(OBJ)
 	@printf \\n$(COL_GRAY)Building\ Output\ $(COL_WHITE)$(COL_BOLD)%-28s$(COL_RESET)\  \
 		$(NAME)
-	@#$(CC) $(INCLUDES) $(OBJ) $(CFLAGS) -o $(NAME)
-	@ar rcs $(BUILD_DIR)/$(NAME) $(OBJ)
-	@printf $(COL_GREEN)done$(COL_RESET)\\n
-
-libs_build:
 	@- $(foreach LIB,$(LIBS),\
 		mkdir -p $(BUILD_DIR); \
 		printf \\n; \
@@ -79,6 +67,9 @@ libs_build:
 		make LIB_NAME=$(LIB)/ BUILD_DIR=$(realpath $(BUILD_DIR)) -C $(LIB) --no-print-directory all; \
 		printf \\n; \
 	)
+	@#$(CC) $(INCLUDES) $(OBJ) $(CFLAGS) -o $(NAME)
+	@ar rcs $(BUILD_DIR)/$(NAME) $(OBJ)
+	@printf $(COL_GREEN)done$(COL_RESET)\\n
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
@@ -115,27 +106,7 @@ fclean: clean
 
 re: fclean all
 
-format:
-	@zsh -c "c_formatter_42 **/*.c **/*.h"
-
-subject: subject.txt
-	@bat --plain subject.txt
-
-subject.txt:
-	@curl $(SUBJECT_URL) | pdftotext -layout -nopgbrk - subject.txt
-
-fuck_raphael:
-	@echo "Oh que oui~~~\net jte nioc"
-
-generate_filelist:
+generate_filelist::
 	@/usr/bin/env zsh -c "tree -iFf --noreport output | rg '^output/src/(.*)\.c\$$' --replace '\$$1' | sort -u" > ./generic_files.list
 	@/usr/bin/env zsh -c "tree -iFf --noreport src | rg '^src/(.*)\.c\$$' --replace '\$$1' | sort -u" > ./source_files.list
 
-bonus: $(BONUS_OBJ) $(OBJ)
-	@printf \\n$(COL_GRAY)Building\ Output\ $(COL_WHITE)$(COL_BOLD)%-28s$(COL_RESET)\  \
-		$(LIB_NAME)$(NAME)
-	@ar rcs $(NAME) $(OBJ) $(BONUS_OBJ)
-	@printf $(COL_GREEN)done$(COL_RESET)\\n
-
-
--include $(DEPS)
