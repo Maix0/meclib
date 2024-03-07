@@ -54,4 +54,3 @@ dkms.conf
 ./generic
 .direnv
 test
-output/
