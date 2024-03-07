@@ -6,13 +6,11 @@
 #    By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/03 13:20:01 by maiboyer          #+#    #+#              #
-#    Updated: 2024/03/07 15:20:25 by maiboyer         ###   ########.fr        #
+#    Updated: 2024/03/07 17:26:52 by maiboyer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-define_module = $(addprefix $(1)/, $(2))
-
-BUILD_DIR		=	build
+BUILD_DIR		?=	build
 SRC_DIR			=	src
 INCLUDE_DIR		=	include output/include
 LIBS_DIR		=	.
@@ -23,19 +21,19 @@ NAME			=	libme.a
 LIB_NAME		?=	
 TARGET			=	$(NAME)
 CC				=	clang
-CFLAGS			=	-Wall -Werror -Wextra -g3 -L$(BUILD_DIR) -Wno-unused-command-line-argument -MMD
+CFLAGS			=	-Wno-unused-command-line-argument -Wall -Werror -Wextra -g3 -L$(BUILD_DIR) -MMD
 BONUS_FILES		=	
 LIBS_NAME		=	
 SUBJECT_URL		=	
 
-GENERIC_FILES	=	$(shell cat generic_files.list)
-SRC_FILES		=	$(shell cat source_files.list)
+GENERIC_FILES	=	$(shell cat gen.list)
+SRC_FILES		=	$(shell cat src.list)
 
 BONUS			=	$(addsuffix .c,$(addprefix $(SRC_DIR)/,$(BONUS_FILES)))
 SRC				=	$(addsuffix .c,$(addprefix $(SRC_DIR)/,$(SRC_FILES))) \
 					$(addsuffix .c,$(addprefix $(GENERIC_DIR)/,$(GENERIC_FILES)))
 BONUS_OBJ		=	$(addsuffix .o,$(addprefix $(BUILD_DIR)/,$(BONUS_FILES)))
-OBJ				=	$(addsuffix .o,$(addprefix $(BUILD_DIR)/,$(SRC_FILES))) \
+OBJ				=	$(addsuffix .o,$(addprefix $(BUILD_DIR)/,$(SRC_FILES) )) \
 					$(addsuffix .o,$(addprefix $(BUILD_DIR)/,$(GENERIC_FILES)))
 DEPS			=	$(addsuffix .d,$(addprefix $(BUILD_DIR)/,$(SRC_FILES))) \
 					$(addsuffix .d,$(addprefix $(BUILD_DIR)/,$(GENERIC_FILES)))
@@ -49,24 +47,24 @@ COL_RESET		=	\\e[0m
 
 .PHONY = all libs_build bonus clean re format subject so
 
-
--include $(DEPS)
-
 all: $(NAME)
+
 get_lib:
 	@printf $(LIB_NAME)/$(NAME)
 
-$(NAME): $(OBJ)
-	@printf \\n$(COL_GRAY)Building\ Output\ $(COL_WHITE)$(COL_BOLD)%-28s$(COL_RESET)\  \
-		$(NAME)
-	@- $(foreach LIB,$(LIBS),\
+build_lib:
+	@ - $(foreach LIB,$(LIBS),\
 		mkdir -p $(BUILD_DIR); \
 		printf \\n; \
 		printf $(COL_GRAY)Building\ library\ $(COL_RESET); \
 		printf $(COL_WHITE)$(COL_BOLD)%-25s$(COL_RESET)\\n $(LIB); \
-		make LIB_NAME=$(LIB)/ BUILD_DIR=$(realpath $(BUILD_DIR)) -C $(LIB) --no-print-directory all; \
+		make LIB_NAME="$(realpath ./$(LIB))/" "BUILD_DIR=$(shell realpath ./$(BUILD_DIR))" -C $(LIB) --no-print-directory; \
 		printf \\n; \
 	)
+
+$(NAME): $(OBJ) build_lib
+	@printf \\n$(COL_GRAY)Building\ Output\ $(COL_WHITE)$(COL_BOLD)%-28s$(COL_RESET)\  \
+		$(NAME)
 	@#$(CC) $(INCLUDES) $(OBJ) $(CFLAGS) -o $(NAME)
 	@ar rcs $(BUILD_DIR)/$(NAME) $(OBJ)
 	@printf $(COL_GREEN)done$(COL_RESET)\\n
@@ -97,7 +95,7 @@ clean:
 
 fclean: clean
 	@- $(foreach LIB,$(LIBS), \
-		make fclean LIB_NAME=$(LIB)/ BUILD_DIR=$(realpath $(BUILD_DIR)) -C $(LIB) --no-print-directory || true;\
+		make fclean LIB_NAME=$(LIB)/ BUILD_DIR=$(shell realpath $(BUILD_DIR)) -C $(LIB) --no-print-directory || true;\
 	)
 	@printf $(COL_WHITE)Clearing\ Output\ $(COL_GRAY)%-28s$(COL_RESET)\  \
 		\($(LIB_NAME)$(NAME)\)
@@ -106,7 +104,14 @@ fclean: clean
 
 re: fclean all
 
-generate_filelist::
-	@/usr/bin/env zsh -c "tree -iFf --noreport output | rg '^output/src/(.*)\.c\$$' --replace '\$$1' | sort -u" > ./generic_files.list
-	@/usr/bin/env zsh -c "tree -iFf --noreport src | rg '^src/(.*)\.c\$$' --replace '\$$1' | sort -u" > ./source_files.list
+subject: subject.txt
+	bat --plain ./subject.txt
 
+subject.txt:
+	@curl $(SUBJECT_URL) | pdftotext -layout -nopgbrk -q - subject.txt
+
+generate_filelist::
+	@/usr/bin/env zsh -c "tree -iFf --noreport output | rg '^output/src/(.*)\.c\$$' --replace '\$$1' | sort -u" > ./gen.list
+	@/usr/bin/env zsh -c "tree -iFf --noreport src | rg '^src/(.*)\.c\$$' --replace '\$$1' | sort -u" > ./src.list
+
+-include $(DEPS)
