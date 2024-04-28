@@ -6,7 +6,7 @@
 #    By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/03 13:20:01 by maiboyer          #+#    #+#              #
-#    Updated: 2024/04/28 17:21:36 by maiboyer         ###   ########.fr        #
+#    Updated: 2024/04/28 19:33:09 by maiboyer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ COL_GREEN		=	\\e[32m
 COL_BOLD		=	\\e[1m
 COL_RESET		=	\\e[0m
 
-.PHONY = all libs_build bonus clean re format subject so
+.PHONY = all bonus clean re subject
 
 all: $(NAME)
 

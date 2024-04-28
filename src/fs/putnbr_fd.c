@@ -6,13 +6,12 @@
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:45:06 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/11/08 13:11:40 by maiboyer         ###   ########.fr       */
+/*   Updated: 2024/04/28 19:42:10 by maiboyer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "me/fs/putnbr_fd.h"
 #include "me/fs/write.h"
-#include "me/mem/mem_set.h"
 
 static void	me_inner(t_u64 nb, t_str out, t_usize *idx)
 {
