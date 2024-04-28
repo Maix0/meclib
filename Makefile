@@ -6,7 +6,7 @@
 #    By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/03 13:20:01 by maiboyer          #+#    #+#              #
-#    Updated: 2024/03/07 17:26:52 by maiboyer         ###   ########.fr        #
+#    Updated: 2024/04/28 17:05:54 by maiboyer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,20 +49,7 @@ COL_RESET		=	\\e[0m
 
 all: $(NAME)
 
-get_lib:
-	@printf $(LIB_NAME)/$(NAME)
-
-build_lib:
-	@ - $(foreach LIB,$(LIBS),\
-		mkdir -p $(BUILD_DIR); \
-		printf \\n; \
-		printf $(COL_GRAY)Building\ library\ $(COL_RESET); \
-		printf $(COL_WHITE)$(COL_BOLD)%-25s$(COL_RESET)\\n $(LIB); \
-		make LIB_NAME="$(realpath ./$(LIB))/" "BUILD_DIR=$(shell realpath ./$(BUILD_DIR))" -C $(LIB) --no-print-directory; \
-		printf \\n; \
-	)
-
-$(NAME): $(OBJ) build_lib
+$(NAME): $(OBJ)
 	@printf \\n$(COL_GRAY)Building\ Output\ $(COL_WHITE)$(COL_BOLD)%-28s$(COL_RESET)\  \
 		$(NAME)
 	@#$(CC) $(INCLUDES) $(OBJ) $(CFLAGS) -o $(NAME)
