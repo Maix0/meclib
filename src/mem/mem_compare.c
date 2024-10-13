@@ -6,13 +6,13 @@
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:16:02 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/12/09 15:00:58 by maiboyer         ###   ########.fr       */
+/*   Updated: 2024/10/12 17:52:33 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "me/mem/mem_compare.h"
+#include "me/mem/mem.h"
 
-t_i32	mem_compare(const void *lhs, const void *rhs, t_usize count)
+bool	mem_compare(const void *lhs, const void *rhs, t_usize count)
 {
 	t_usize	i;
 	t_u8	*lhs_;
@@ -24,8 +24,8 @@ t_i32	mem_compare(const void *lhs, const void *rhs, t_usize count)
 	while (i < count)
 	{
 		if (lhs_[i] - rhs_[i])
-			return ((t_i32)(lhs_[i] - rhs_[i]));
+			return (false);
 		i++;
 	}
-	return (0);
+	return (true);
 }

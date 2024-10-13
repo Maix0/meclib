@@ -6,27 +6,26 @@
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 17:57:04 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/12/01 21:20:07 by maiboyer         ###   ########.fr       */
+/*   Updated: 2024/10/12 17:52:42 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "me/buffered_str/buf_str.h"
-#include "me/convert/atoi.h"
+#include "me/mem/mem.h"
 #include "me/printf/formatter/utils.h"
 #include "me/printf/matchers/matchers.h"
-#include "me/printf/printf.h"
-#include "me/string/str_find_chr.h"
-#include "me/string/str_substring.h"
+#include "me/str/str.h"
 #include "me/types.h"
 #include <stdio.h>
 #include <stdlib.h>
+
+t_i32	_atoi_printf(t_const_str s);
 
 bool	handle_atoi_stuff(t_const_str fmt, t_usize *c_idx, t_usize *nxt,
 		t_printf_arg *c_arg)
 {
 	t_i32	atoi_res;
 
-	atoi_res = me_atoi(&fmt[*c_idx]);
+	atoi_res = _atoi_printf(&fmt[*c_idx]);
 	if (atoi_res < 0)
 	{
 		*c_idx = *nxt;
@@ -36,7 +35,7 @@ bool	handle_atoi_stuff(t_const_str fmt, t_usize *c_idx, t_usize *nxt,
 	advance_atoi(fmt, c_idx);
 	c_arg->extra.align = (t_u64)atoi_res;
 	handle_prec_and_align(fmt, c_idx, c_arg);
-	atoi_res = atoi(&fmt[*c_idx]);
+	atoi_res = _atoi_printf(&fmt[*c_idx]);
 	if (atoi_res < 0)
 	{
 		*c_idx = *nxt;
@@ -99,7 +98,7 @@ t_printf_arg	print_substr(t_usize *c_idx, t_usize *nxt, t_const_str fmt,
 
 	truc = str_substring(fmt, *c_idx, *nxt - *c_idx);
 	extra.f(truc, *nxt - *c_idx, extra.p_args);
-	free(truc);
+	mem_free(truc);
 	*c_idx = *nxt + 1;
 	return ((t_printf_arg){
 		.p_args = extra.p_args,

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mlx.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ol <ol@epitech.net>                        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2000/08/01 16:37:50 by ol                #+#    #+#             */
+/*   Updated: 2024/10/12 17:52:49 by rparodi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 /*
 ** mlx.h for MinilibX in
 **
@@ -44,7 +56,9 @@ void	*mlx_new_window(void *mlx_ptr, int size_x, int size_y, char *title);
 **  return void *0 if failed
 */
 int		mlx_clear_window(void *mlx_ptr, void *win_ptr);
-int		mlx_pixel_put(void *mlx_ptr, void *win_ptr, int x, int y, int color);
+
+//int	mlx_pixel_put(void *mlx_ptr, void *win_ptr, int x, int y, int color);
+int		mlx_pixel_put(void *mlx_ptr, void *win_ptr, ...);
 /*
 **  origin for x & y is top left corner of the window
 **  y down is positive
@@ -67,8 +81,10 @@ char	*mlx_get_data_addr(void *img_ptr, int *bits_per_pixel, int *size_line,
 **  endian : 0 = sever X is little endian, 1 = big endian
 **  for mlx_new_image2, 2nd arg of mlx_get_data_addr is number_of_planes
 */
-int		mlx_put_image_to_window(void *mlx_ptr, void *win_ptr, void *img_ptr,
-			int x, int y);
+//int		mlx_put_image_to_window(void *mlx_ptr, void *win_ptr, void *img_ptr,
+//			int x, int y);
+int		mlx_put_image_to_window(void *mlx_ptr, void *win_ptr, void *img_ptr, \
+								...);
 int		mlx_get_color_value(void *mlx_ptr, int color);
 
 /*
@@ -97,8 +113,10 @@ int		mlx_loop_end(void *mlx_ptr);
 **  Usually asked...
 */
 
-int		mlx_string_put(void *mlx_ptr, void *win_ptr, int x, int y, int color,
-			char *string);
+//int	mlx_string_put(void *mlx_ptr, void *win_ptr, int x, int y, int color,
+//		char *string);
+int		mlx_string_put(void *mlx_ptr, void *win_ptr, ...);
+
 void	mlx_set_font(void *mlx_ptr, void *win_ptr, char *name);
 void	*mlx_xpm_to_image(void *mlx_ptr, char **xpm_data, int *width,
 			int *height);
@@ -115,8 +133,8 @@ int		mlx_destroy_display(void *mlx_ptr);
 **    can be hooked. Some macro and defines from X11/X.h are needed here.
 */
 
-int		mlx_hook(void *win_ptr, int x_event, int x_mask, int (*funct)(),
-			void *param);
+int		mlx_hook(void *win_ptr, int x_event, int x_mask, ...);
+// void *param);
 
 int		mlx_do_key_autorepeatoff(void *mlx_ptr);
 int		mlx_do_key_autorepeaton(void *mlx_ptr);

@@ -6,16 +6,15 @@
 /*   By: maix <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 01:44:35 by maix              #+#    #+#             */
-/*   Updated: 2023/12/11 19:19:27 by maiboyer         ###   ########.fr       */
+/*   Updated: 2024/10/12 17:52:40 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "me/mem/mem_alloc_array.h"
-#include "me/mem/mem_set.h"
+#include "me/mem/mem.h"
+#include "me/mem/mem.h"
 #include "me/printf/formatter/utils.h"
-#include "me/printf/printf.h"
-#include "me/string/str_clone.h"
-#include "me/string/str_len.h"
+#include "me/str/str.h"
+#include "me/str/str.h"
 #include <stdio.h>
 #include <stdlib.h>
 #define INT_INLINE_BUF 21
@@ -85,5 +84,5 @@ void	printf_d(t_printf_arg data, t_printf_func f)
 .fill_zero = 0, .fill = 0, .sign = sign, .pretty = NULL, .len = \
 str_len(start_num), .pretty_len = 0, .str = start_num, .allow_zero_fill \
 	= true, .sign_len = str_len(sign), }, data, f);
-	free(start_num);
+	mem_free(start_num);
 }

@@ -6,14 +6,14 @@
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 21:15:19 by maiboyer          #+#    #+#             */
-/*   Updated: 2024/03/07 15:24:38 by maiboyer         ###   ########.fr       */
+/*   Updated: 2024/10/12 17:52:16 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "me/char/isalpha.h"
+#include "me/char/char.h"
 #include "me/convert/str_to_numbers.h"
 #include "me/printf/printf.h"
-#include "me/string/str_len.h"
+#include "me/str/str.h"
 #include "me/types.h"
 
 t_error	checked_add_i64(t_i64 lhs, t_i64 rhs, t_i64 *out)
@@ -26,8 +26,8 @@ t_error	checked_add_i64(t_i64 lhs, t_i64 rhs, t_i64 *out)
 
 t_error	checked_sub_i64(t_i64 lhs, t_i64 rhs, t_i64 *out)
 {
-	if ((((rhs & (1 << (sizeof(t_i64) - 1)) || rhs == 0) || !true) && (lhs \
-		< -(~9223372036854775807ll + 1) + rhs)))
+	if ((((rhs & (1 << (sizeof(t_i64) - 1)) || rhs == 0) || !true) && (lhs < \
+				-(~9223372036854775807ll + 1) + rhs)))
 		return (ERROR);
 	*out = (t_i64)(lhs - rhs);
 	return (NO_ERROR);

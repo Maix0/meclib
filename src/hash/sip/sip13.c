@@ -6,13 +6,13 @@
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 19:32:28 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/12/27 16:48:13 by maiboyer         ###   ########.fr       */
+/*   Updated: 2024/10/12 17:52:30 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "me/hash/sip.h"
 #include "me/hash/sip/sip_utils.h"
-#include "me/mem/mem_alloc.h"
+#include "me/mem/mem.h"
 
 t_hasher	hasher_sip13_new(void)
 {

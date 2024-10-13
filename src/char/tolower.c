@@ -6,14 +6,14 @@
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 16:47:50 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/11/04 16:56:03 by maiboyer         ###   ########.fr       */
+/*   Updated: 2024/10/12 17:52:25 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "me/char/isupper.h"
-#include "me/char/tolower.h"
+#include "me/char/char.h"
+#include "me/char/char.h"
 
-bool	me_tolower(char chr)
+char	me_tolower(char chr)
 {
 	if (me_isupper(chr))
 		return (chr + ('a' - 'A'));

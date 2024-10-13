@@ -6,11 +6,11 @@
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:16:02 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/12/09 15:01:08 by maiboyer         ###   ########.fr       */
+/*   Updated: 2024/10/12 17:52:33 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "me/mem/mem_copy.h"
+#include "me/mem/mem.h"
 
 void	*mem_copy(void *destination, const void *source, t_usize count)
 {

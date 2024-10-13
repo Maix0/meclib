@@ -6,11 +6,11 @@
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 16:19:40 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/11/04 16:42:38 by maiboyer         ###   ########.fr       */
+/*   Updated: 2024/10/12 17:52:25 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "me/char/isprint.h"
+#include "me/char/char.h"
 
 bool	me_isprint(char chr)
 {

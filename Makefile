@@ -6,44 +6,43 @@
 #    By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/03 13:20:01 by maiboyer          #+#    #+#              #
-#    Updated: 2024/04/28 19:33:09 by maiboyer         ###   ########.fr        #
+#    Updated: 2024/10/13 15:37:14 by maiboyer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-BUILD_DIR		?=	build
-SRC_DIR			=	src
-INCLUDE_DIR		=	include output/include
-LIBS_DIR		=	.
-GENERIC_DIR		=	output/src
-GENERIC_INCLUDE	=	output/include
+ANAME			=	me
 
+BUILD_DIR		?=	../build
+SRC_DIR			=	src
+INCLUDE_DIR		=	include output/include ./aq/include
+LIBS_DIR		=	.
+GEN_DIR			=	output/src
+GEN_INCLUDE		=	output/include
+
+
+BASE_PATH		?=	$(shell pwd)
 NAME			=	libme.a
 LIB_NAME		?=	
 TARGET			=	$(BUILD_DIR)/$(NAME)
-CC				=	clang
-CFLAGS			=	-Wno-unused-command-line-argument -Wall -Werror -Wextra -g3 -L$(BUILD_DIR) -MMD
-BONUS_FILES		=	
-LIBS_NAME		=	
-SUBJECT_URL		=	
+CC				?=	clang
+CFLAGS			=	-Wall -Werror -Wextra -MMD -DBASE_PATH='"$(BASE_PATH)/"'
+CFLAGS			+=	$(CFLAGS_ADDITIONAL)
 
-GENERIC_FILES	=	$(shell cat gen.list)
-SRC_FILES		=	$(shell cat src.list)
+-include 			./Filelist.$(ANAME).mk
 
-BONUS			=	$(addsuffix .c,$(addprefix $(SRC_DIR)/,$(BONUS_FILES)))
-SRC				=	$(addsuffix .c,$(addprefix $(SRC_DIR)/,$(SRC_FILES))) \
-					$(addsuffix .c,$(addprefix $(GENERIC_DIR)/,$(GENERIC_FILES)))
-BONUS_OBJ		=	$(addsuffix .o,$(addprefix $(BUILD_DIR)/,$(BONUS_FILES)))
-OBJ				=	$(addsuffix .o,$(addprefix $(BUILD_DIR)/,$(SRC_FILES) )) \
-					$(addsuffix .o,$(addprefix $(BUILD_DIR)/,$(GENERIC_FILES)))
-DEPS			=	$(addsuffix .d,$(addprefix $(BUILD_DIR)/,$(SRC_FILES))) \
-					$(addsuffix .d,$(addprefix $(BUILD_DIR)/,$(GENERIC_FILES)))
+SRC				=	$(addsuffix .c,$(addprefix $(SRC_DIR)/,$(GEN_FILES)) $(addprefix $(GEN_DIR)/,$(GEN_FILES)))
+OBJ				=	$(addsuffix .o,$(addprefix $(BUILD_DIR)/$(ANAME)/,$(SRC_FILES) $(GEN_FILES)))
+DEPS			=	$(addsuffix .d,$(addprefix $(BUILD_DIR)/$(ANAME)/,$(SRC_FILES) $(GEN_FILES)))
+
 LIBS			=	$(addprefix $(LIBS_DIR)/,$(LIBS_NAME))
-INCLUDES		=	$(addprefix -I,$(foreach P,$(INCLUDE_DIR) $(GENERIC_INCLUDE) $(LIBS) $(addsuffix /include,$(LIBS)) vendor $(addsuffix /vendor,$(LIBS)),$(realpath $(P))))
-COL_GRAY		=	\\e[90m
-COL_WHITE		=	\\e[37m
-COL_GREEN		=	\\e[32m
-COL_BOLD		=	\\e[1m
-COL_RESET		=	\\e[0m
+INCLUDES		=	$(addprefix -I,$(foreach P,$(INCLUDE_DIR) $(GEN_INCLUDE) $(LIBS) $(addsuffix /include,$(LIBS)) vendor $(addsuffix /vendor,$(LIBS)),$(realpath $(P))))
+COL_GRAY		=	\033[90m
+COL_WHITE		=	\033[37m
+COL_GREEN		=	\033[32m
+COL_BOLD		=	\033[1m
+COL_RESET		=	\033[0m
+COL_GOLD		=	\033[93m
+
 
 .PHONY = all bonus clean re subject
 
@@ -52,33 +51,27 @@ all: $(NAME)
 $(NAME): $(TARGET)
 
 $(TARGET): $(OBJ)
-	@printf \\n$(COL_GRAY)Building\ Output\ $(COL_WHITE)$(COL_BOLD)%-28s$(COL_RESET)\  \
-		$(NAME)
+	@echo -e '$(COL_GRAY) Linking \t$(COL_GOLD)$(TARGET)$(COL_RESET)'
 	@#$(CC) $(INCLUDES) $(OBJ) $(CFLAGS) -o $(NAME)
 	@ar rcs $(BUILD_DIR)/$(NAME) $(OBJ)
-	@printf $(COL_GREEN)done$(COL_RESET)\\n
 
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
+$(BUILD_DIR)/$(ANAME)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
-	@printf $(COL_GRAY)Building\ $(COL_BOLD)$(COL_WHITE)%-50s\  $(LIB_NAME)$<
-	@$(CC) $(CFLAGS) $(WERROR) $(INCLUDES) -c $< -o $@
-	@printf $(COL_RESET)$(COL_GREEN)done$(COL_RESET)\\n
+	@echo -e '$(COL_GRAY) Building\t$(COL_GREEN)$<$(COL_RESET)'
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-$(BUILD_DIR)/%.o: $(GENERIC_DIR)/%.c
+$(BUILD_DIR)/$(ANAME)/%.o: $(GEN_DIR)/%.c
 	@mkdir -p $(dir $@)
-	@printf $(COL_GRAY)Building\ $(COL_BOLD)$(COL_WHITE)%-50s\  $(LIB_NAME)$<
-	@$(CC) $(CFLAGS) $(WERROR) $(INCLUDES) -c $< -o $@
-	@printf $(COL_RESET)$(COL_GREEN)done$(COL_RESET)\\n
+	@echo -e '$(COL_GRAY) Building\t$(COL_GREEN)$<$(COL_RESET)'
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
 	@- $(foreach LIB,$(LIBS), \
 		make clean LIB_NAME=$(LIB)/ BUILD_DIR=$(realpath $(BUILD_DIR)) -C $(LIB) --no-print-directory || true;\
 	)
 	@- $(if $(LIB_NAME),,\
-		printf $(COL_WHITE)Clearing\ Artefacts\ ; \
-		printf $(COL_GRAY)\%-25s$(COL_RESET)\  \($(BUILD_DIR)\); \
+		echo -e '$(COL_WHITE)Clearing Artefacts\t$(COL_GREEN)$(BUILD_DIR)/$(COL_RESET)' \
 		rm -rf $(BUILD_DIR); \
-		printf $(COL_GREEN)done$(COL_RESET)\\n; \
 	)
 	@echo >/dev/null
 
@@ -86,10 +79,8 @@ fclean: clean
 	@- $(foreach LIB,$(LIBS), \
 		make fclean LIB_NAME=$(LIB)/ BUILD_DIR=$(shell realpath $(BUILD_DIR)) -C $(LIB) --no-print-directory || true;\
 	)
-	@printf $(COL_WHITE)Clearing\ Output\ $(COL_GRAY)%-28s$(COL_RESET)\  \
-		\($(LIB_NAME)$(NAME)\)
-	@rm -f $(BUILD_DIR)$(NAME)
-	@printf $(COL_GREEN)done$(COL_RESET)\\n
+	@echo -e '$(COL_WHITE)Clearing Output\t$(COL_GREEN)$(BUILD_DIR)/$(NAME)$(COL_RESET)'
+	@rm -f $(BUILD_DIR)/$(NAME)
 
 re: fclean all
 
@@ -99,8 +90,16 @@ subject: subject.txt
 subject.txt:
 	@curl $(SUBJECT_URL) | pdftotext -layout -nopgbrk -q - subject.txt
 
-generate_filelist::
-	@/usr/bin/env zsh -c "tree -iFf --noreport output | rg '^output/src/(.*)\.c\$$' --replace '\$$1' | sort -u" > ./gen.list
-	@/usr/bin/env zsh -c "tree -iFf --noreport src | rg '^src/(.*)\.c\$$' --replace '\$$1' | sort -u" > ./src.list
+
+build_filelist:
+	@rm -f Filelist.$(ANAME).mk
+	@printf '%-78s\\\n' "SRC_FILES =" > Filelist.$(ANAME).mk
+	@tree $(SRC_DIR) -ifF | rg '$(SRC_DIR)/(.*)\.c$$' --replace '$$1' | sed -re 's/^(.*)_([0-9]+)$$/\1|\2/g' | sort -t'|' --key=1,1 --key=2,2n | sed -e's/|/_/' | xargs printf '%-78s\\\n' >> Filelist.$(ANAME).mk
+	@echo "" >> Filelist.$(ANAME).mk
+	@printf '%-78s\\\n' "GEN_FILES =" >> Filelist.$(ANAME).mk
+	@tree $(GEN_DIR) -ifF | rg '$(GEN_DIR)/(.*)\.c$$' --replace '$$1' | sed -re 's/^(.*)_([0-9]+)$$/\1|\2/g' | sort -t'|' --key=1,1 --key=2,2n | sed -e's/|/_/' | xargs printf '%-78s\\\n' >> Filelist.$(ANAME).mk
+	@echo "" >> Filelist.$(ANAME).mk
+
+%.h: ;
 
 -include $(DEPS)

@@ -6,14 +6,13 @@
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:16:16 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/12/11 19:20:42 by maiboyer         ###   ########.fr       */
+/*   Updated: 2024/10/12 17:52:41 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "me/mem/mem_set.h"
+#include "me/mem/mem.h"
 #include "me/printf/formatter/utils.h"
-#include "me/printf/printf.h"
-#include "me/string/str_len.h"
+#include "me/str/str.h"
 #define PTR_INLINE_BUF 17
 
 static void	fill_hex(t_str out_buf, t_u64 num, t_str base)

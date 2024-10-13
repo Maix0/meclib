@@ -6,11 +6,11 @@
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 16:19:40 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/11/08 04:01:25 by maiboyer         ###   ########.fr       */
+/*   Updated: 2024/10/12 17:52:23 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "me/char/isalpha.h"
+#include "me/char/char.h"
 
 bool	me_isalpha(char chr)
 {

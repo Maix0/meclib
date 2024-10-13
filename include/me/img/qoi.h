@@ -6,12 +6,11 @@
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 17:39:36 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/12/25 18:35:05 by maiboyer         ###   ########.fr       */
+/*   Updated: 2024/10/12 17:52:07 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-
 Copyright (c) 2021, Dominic Szablewski - https://phoboslab.org
 SPDX-License-Identifier: MIT
 
@@ -64,7 +63,8 @@ See the function declaration below for the signature and more information.
 If you don't want/need the qoi_read and qoi_write functions, you can define
 QOI_NO_STDIO before including this library.
 
-This library uses malloc() and free(). To supply your own malloc implementation
+This library uses malloc() and mem_free(). To supply your own malloc 
+implementation
 you can define QOI_MALLOC and QOI_FREE before including this library.
 
 This library uses memset() to zero-initialize the index. To supply your own
@@ -227,8 +227,7 @@ Header - Public functions */
 #ifndef QOI_H
 # define QOI_H
 
-# include "me/mem/mem_alloc.h"
-# include "me/mem/mem_set_zero.h"
+# include "me/mem/mem.h"
 # include "me/types.h"
 /* A pot_i32er to a t_qoi_desc struct has to be supplied to all of qoi's
 functions. It describes either the input format (for qoi_write and qoi_encode),
@@ -273,7 +272,7 @@ The function either returns NULL on failure (invalid data, or malloc or fopen
 failed) or a pot_i32er to the decoded pixels. On success, the t_qoi_desc struct
 will be filled with the description from the file header.
 
-The returned pixel data should be free()d after use. */
+The returned pixel data should be mem_free()d after use. */
 
 void				*qoi_read(t_const_str filename, t_qoi_desc *desc,
 						t_i32 channels);
@@ -286,7 +285,7 @@ The function either returns NULL on failure (invalid parameters or malloc
 failed) or a pot_i32er to the encoded data on success. On success the out_len
 is set to the size in bytes of the encoded data.
 
-The returned qoi data should be free()d after use. */
+The returned qoi data should be mem_free()d after use. */
 
 void				*qoi_encode(const void *data, const t_qoi_desc *desc,
 						t_i32 *out_len);
@@ -297,7 +296,7 @@ The function either returns NULL on failure (invalid parameters or malloc
 failed) or a pot_i32er to the decoded pixels. On success, the t_qoi_desc struct
 is filled with the description from the file header.
 
-The returned pixel data should be free()d after use. */
+The returned pixel data should be mem_free()d after use. */
 
 void				*qoi_decode(const void *data, t_i32 size, t_qoi_desc *desc,
 						t_i32 channels);

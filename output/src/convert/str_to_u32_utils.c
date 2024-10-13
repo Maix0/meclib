@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   str_to_i64.c                                       :+:      :+:    :+:   */
+/*   str_to_u32_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 21:15:19 by maiboyer          #+#    #+#             */
-/*   Updated: 2024/02/01 23:18:52 by maiboyer         ###   ########.fr       */
+/*   Updated: 2024/10/12 17:52:18 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "me/char/isalpha.h"
+#include "me/char/char.h"
 #include "me/convert/str_to_numbers.h"
 #include "me/printf/printf.h"
-#include "me/string/str_len.h"
+#include "me/str/str.h"
 #include "me/types.h"
 
 t_error	checked_add_u32(t_u32 lhs, t_u32 rhs, t_u32 *out)

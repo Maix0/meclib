@@ -6,11 +6,11 @@
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 14:26:25 by maiboyer          #+#    #+#             */
-/*   Updated: 2023/11/08 02:39:24 by maiboyer         ###   ########.fr       */
+/*   Updated: 2024/10/12 17:52:25 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "me/char/isspace.h"
+#include "me/char/char.h"
 
 bool	me_isspace(char chr)
 {

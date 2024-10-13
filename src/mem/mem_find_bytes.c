@@ -6,11 +6,11 @@
 /*   By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:16:02 by maiboyer          #+#    #+#             */
-/*   Updated: 2024/01/06 17:14:23 by maiboyer         ###   ########.fr       */
+/*   Updated: 2024/10/12 17:52:33 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "me/mem/mem_find_bytes.h"
+#include "me/mem/mem.h"
 #include "stdio.h"
 
 void	*mem_find_bytes(void *buf, t_u8 *find, t_usize find_len, t_usize count)

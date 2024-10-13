@@ -6,14 +6,13 @@
 /*   By: maix <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 01:19:18 by maix              #+#    #+#             */
-/*   Updated: 2023/12/11 19:17:23 by maiboyer         ###   ########.fr       */
+/*   Updated: 2024/10/12 17:52:40 by rparodi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "me/mem/mem_set.h"
+#include "me/mem/mem.h"
 #include "me/printf/formatter/utils.h"
-#include "me/printf/printf.h"
-#include "me/string/str_len.h"
+#include "me/str/str.h"
 #include <stdio.h>
 #define OCT_INLINE_BUF 23
 
